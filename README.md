@@ -1,4 +1,4 @@
-# Homegrown Huskylink
+# Husky Hive
 This repository serves as a space for our re-envisioned platform to student organization discovery and management at the University of Washington Seattle.
 
 In consideration of the needs across students searching for RSOs, as well as RSO leaders, we are actively developing a space that hopes to centralize student engagement, communications, and involvement with extracurriculars and broader societies. We are currently under construction, but please check back soon! 🚧
