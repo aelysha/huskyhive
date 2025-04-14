@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import SignIn from './Pages/SignIn/SignIn';  // Import the SignIn component
+
 
 import NavBar from './components/NavBar/NavBar'
 import Home from './Pages/Home/Home'
@@ -16,6 +18,7 @@ function App(props) {
           <NavBar />
         </header>
         <main>
+        <SignIn />
           <div>
             <Routes>
                 <Route path="Home" element={<Home />} />
