@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import SignIn from './Pages/SignIn/SignIn';  // Import the SignIn component
+import SignIn from './Pages/SignIn/SignIn'; 
 
 
 import NavBar from './components/NavBar/NavBar'
@@ -19,13 +19,13 @@ function App(props) {
         </header>
         <main>
         <SignIn />
+        <Calendar />
           <div>
             <Routes>
                 <Route path="Home" element={<Home />} />
                 <Route path="RSO" element={<RSO />} />
                 <Route path="Profile" element={<Profile />} />
                 <Route path="Event" element={<Event />} />
-                <Route path="Calendar" element={<Calendar />} />
                 <Route path="*" element={<Home />} />
             </Routes>
           </div>   
