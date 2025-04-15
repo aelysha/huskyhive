@@ -1,0 +1,73 @@
+.navbar {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4B2E83;
+    filter: drop-shadow(2px 2px 2px #424141);
+}
+
+.nav-links ul {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0;
+}
+
+.left-pane {
+    display: flex;
+    align-items: center;
+    gap: 1em; 
+  }
+
+.nav-links li {
+    margin: .5em 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-size: 1.2em;
+    font-family: "Ubuntu Sans";
+    font-weight: 400;
+    color: #E8E3D3;
+    padding: 1em;
+    display: inline;
+    border-radius: 2em;
+    transition-duration: 500ms;
+}
+
+.nav-links li:hover a:hover {
+    font-weight: 700;
+    background-color: #FFFFFF1A;
+}
+
+img {
+    height: 3em;
+    width: auto;
+}
+
+.logo {
+    margin-left: .5em;
+}
+
+.right-pane {
+    background-color: #FFFFFF;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5em 2em;
+}
+
+.profile {
+    padding: .5em;
+    display: inline;
+    border-radius: 2em;
+    transition-duration: 500ms;
+}
+
+.profile:hover {  
+    background-color: #211f1f1a;
+  }
