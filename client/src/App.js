@@ -9,6 +9,7 @@ import Profile from './Pages/Profile/Profile';
 import RSO from './Pages/RSO/RSO'
 import Event from './Pages/Event/Event'
 import Calendar from './Pages/Calendar/Calendar'
+import Footer from './components/Footer/Footer.js';
 
 // cd client, npm start
 function App(props) {
@@ -23,6 +24,7 @@ function App(props) {
             <Route path="*" element={<Home />} />
             <Route path="Calendar" element={<Calendar />} />
         </Routes>
+      <Footer />
     </Router>
   );
 }

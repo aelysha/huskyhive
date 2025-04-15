@@ -1,0 +1,26 @@
+.left {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    clip-path: polygon(7.5% 0, 100% 0, 100% 100%, 10% 100%);
+    background-color: #E8E3D3;
+    z-index: 2; /* to adjust hierarchy of elements */
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #4B2E83;
+    text-align: right;
+    font-family: "Ubuntu Sans";
+    z-index: 1;
+}
+
+
+
