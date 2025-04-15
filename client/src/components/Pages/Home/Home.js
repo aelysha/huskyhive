@@ -8,11 +8,11 @@ export default function Home() {
     }
 
     const onClickToLogin = () => {
-        navigate('/rsos');
+        navigate('/signin');
     }
 
     const onClickToEvents = () => {
-        navigate('/rsos');
+        navigate('/event');
     }
 
     return (
