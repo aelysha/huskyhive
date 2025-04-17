@@ -4,15 +4,15 @@ import React, {useEffect, useState} from 'react'
 function App() {
 
   useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    )
-  })
-  return (
-    <div>
+  //   fetch("/api").then(
+  //     response => response.json()
+  //   )
+  // })
+  // return (
+  //   <div>
 
-    </div>
-  )
+  //   </div>
+  // )
 }
 
 export default App
