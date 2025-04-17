@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 // cd client, npm start
 function App() {
 
-  useEffect(() => {
+  // useEffect(() => {
   //   fetch("/api").then(
   //     response => response.json()
   //   )
