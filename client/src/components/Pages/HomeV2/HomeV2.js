@@ -40,7 +40,19 @@ const events = [
     description: 'An all-afternoon event highlighting the UW and Seattle fashion scenes...',
     logo: '/logo512.png',
   }
-  // Add more event objects here
+];
+
+const announcements = [
+    {
+        rso: 'Hiking Club at UW',
+        logo: '/logo512.png',
+        content:'On Saturday, we explored within the Blanchard State Forest to Lily Lake and Oyster Dome...'
+    },
+    {
+        rso:'IUGA',
+        logo:'/logo512.png',
+        content:'Informatics Undergraduate students-- if youre graduating this spring, dont forget to order your stole by 2/22...'
+    }
 ];
 
 export default function EventCarousel() {
@@ -104,7 +116,22 @@ export default function EventCarousel() {
                 </button>
             </div>
             <div>
-
+                {announcements.map((announcement, index) => (
+                    <div className="p-4 flex items-start gap-3 bg-zinc-300 m-4">
+                        <img
+                            src={announcement.logo}
+                            className="w-12 h-12 rounded-full"
+                            alt="Logo"
+                        />
+                        <div className="flex-1">
+                            <h3 className="text-xl"><b>{announcement.rso}</b> posted an announcement</h3>
+                            <p className="text-sm">{announcement.content}</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                    </div>
+                ))}
             </div>
         </div>
     );
