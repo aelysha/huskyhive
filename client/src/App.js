@@ -9,13 +9,6 @@ import EventCarousel from './components/Pages/HomeV2/HomeV2';
 
 // cd client, npm start
 function App() {
-
-  // useEffect(() => {
-  //   fetch("/api").then(
-  //     response => response.json()
-  //   )
-  // })
-
   return (
     <div>
       <Navbar />
@@ -27,8 +20,6 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/homeV2" element={<EventCarousel />} />
       </Routes>
-
-    </div>
   )
 }
 
