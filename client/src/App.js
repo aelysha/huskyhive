@@ -20,6 +20,7 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/homeV2" element={<EventCarousel />} />
       </Routes>
+  </div>
   )
 }
 
