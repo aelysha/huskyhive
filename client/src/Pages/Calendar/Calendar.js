@@ -35,8 +35,8 @@ function Calendar() {
       {calendarSource && (
         <iframe
           src={calendarSource}
-          width="500"
-          height="500"
+          width="1000"
+          height="1000"
           title="Calendar"
         ></iframe>
       )}

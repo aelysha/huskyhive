@@ -25,7 +25,7 @@ function Profile() {
         <div className="picture-view">
           <h2 className="panel-title">Profile Name</h2>
           {/* Profile picture can be added here */}
-          <div className="profile-picture">PFP</div>
+          <div className="profile-picture">Pic Here</div>
           <div className="profile-section">
             <div
               className="profile-section-header"
