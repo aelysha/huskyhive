@@ -14,10 +14,7 @@ function App(props) {
   return (
     <Router>
       <div className="app-container">
-        {/* Navbar (Header) */}
         <NavBar />
-
-        {/* Main Content Area */}
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -28,8 +25,6 @@ function App(props) {
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
-
-        {/* Footer */}
         <Footer />
       </div>
     </Router>

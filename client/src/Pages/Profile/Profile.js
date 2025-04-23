@@ -6,7 +6,7 @@ function Profile() {
   const [email, setEmail] = useState('');
   const [major, setMajor] = useState('');
   const [interests, setInterests] = useState(['Coding', 'Music', 'Art']);
-  const [organizations, setOrganizations] = useState(['Tech Club', 'Music Society']);
+  const [organizations, setOrganizations] = useState(['IUGA', 'GWC']);
   const [newInterest, setNewInterest] = useState('');
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isDemographicsOpen, setIsDemographicsOpen] = useState(false);
@@ -21,10 +21,8 @@ function Profile() {
   return (
     <div className="profile-setting">
       <div className="outer-box">
-        {/* Left Side for Profile Picture and Interests */}
         <div className="picture-view">
           <h2 className="panel-title">Profile Name</h2>
-          {/* Profile picture can be added here */}
           <div className="profile-picture">Pic Here</div>
           <div className="profile-section">
             <div
@@ -42,7 +40,6 @@ function Profile() {
                       {interest}
                     </span>
                   ))}
-                  {/* Dark Purple Button for Adding New Interest */}
                   <button
                     className="add-tag"
                     onClick={addInterest}
@@ -83,11 +80,9 @@ function Profile() {
           </div>
         </div>
 
-        {/* Right Side for Form Fields */}
         <div className="edit-view">
           <h2 className="panel-title">My Account</h2>
 
-          {/* Profile Information Section with Text Input */}
           <div className="form-section">
             <div className="input-container">
               <label htmlFor="name">Name:</label>
@@ -114,7 +109,6 @@ function Profile() {
             </div>
           </div>
 
-          {/* Demographics Section with Text Input */}
           <div className="form-section">
             <div className="input-container">
               <label htmlFor="major">Major:</label>
@@ -129,7 +123,6 @@ function Profile() {
             </div>
           </div>
 
-          {/* Preferences Section */}
           <div className="form-section">
             <textarea
               placeholder="Enter your preferences here..."
