@@ -8,6 +8,7 @@ import RSO from './Pages/RSO/RSO';
 import Event from './Pages/Event/Event';
 import Calendar from './Pages/Calendar/Calendar';
 import Footer from './components/Footer/Footer.js';
+import EventCarousel from './Pages/HomeV2/HomeV2.js';
 
 // cd client, npm start
 function App(props) {
@@ -23,6 +24,7 @@ function App(props) {
             <Route path="Event" element={<Event />} />
             <Route path="Calendar" element={<Calendar />} />
             <Route path="*" element={<Home />} />
+            <Route path="/Home" element={<EventCarousel />} />
           </Routes>
         </div>
         <Footer />
