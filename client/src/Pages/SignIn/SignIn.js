@@ -9,10 +9,10 @@ const SignIn = () => {
         </h2>
         <GoogleLogin
             onSuccess={credentialResponse => {
-                console.log(credentialResponse);
+              console.log(credentialResponse);
             }}
             onError={() => {
-                console.log('Login Failed');
+              console.log('Login Failed');
             }}
         />
     </div>

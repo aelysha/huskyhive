@@ -91,7 +91,8 @@ const theme = createTheme({
     h4: { fontFamily: '"Encode Sans", sans-serif' },
     h5: { fontFamily: '"Encode Sans", sans-serif' },
     h6: { fontFamily: '"Encode Sans", sans-serif' },
-  },
+  }
+
 });
 
 export default theme;
