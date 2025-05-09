@@ -6,6 +6,8 @@ import Home from './Pages/Home/Home';
 import Profile from './Pages/Profile/Profile.js';
 import RSO from './Pages/RSO/RSO';
 import Event from './Pages/Event/Event';
+import Search from './Pages/Search/Search.js'
+import EventSearch from './Pages/Search/EventSearch.js'
 import Calendar from './Pages/Calendar/Calendar';
 import Footer from './components/Footer/Footer.js';
 import EventCarousel from './Pages/HomeV2/HomeV2.js';
@@ -24,9 +26,9 @@ function App(props) {
             <div className="main-content">
               <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/RSOs" element={<RSO />} />
+                <Route path="/RSOs" element={<Search />} />
                 <Route path="Profile" element={<Profile />} />
-                <Route path="/Events" element={<Event />} />
+                <Route path="/Events" element={<EventSearch />} />
                 <Route path="Calendar" element={<Calendar />} />
                 <Route path="*" element={<LandingPage />} />
                 <Route path="/Home" element={<EventCarousel />} />
