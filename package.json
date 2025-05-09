@@ -1,8 +1,22 @@
 {
   "dependencies": {
+    "@fontsource/encode-sans": "^5.2.5",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
     "@react-oauth/google": "^0.12.1",
+    "@rmwc/button": "^14.3.5",
+    "@rmwc/card": "^14.3.5",
+    "@rmwc/grid": "^14.3.5",
+    "@rmwc/icon": "^14.3.5",
+    "@rmwc/top-app-bar": "^14.3.5",
+    "@rmwc/touch-target": "^14.3.5",
+    "@rmwc/typography": "^14.3.5",
     "axios": "^1.8.4",
     "google-auth-library": "^9.15.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.87.0",
     "swiper": "^11.2.6"
   },
   "devDependencies": {

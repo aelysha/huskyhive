@@ -1,8 +1,13 @@
 import express from "express";
 
+import dotenv from 'dotenv'
+dotenv.config()
+
 import usersRouter from './routes/users.js'
 
 var app = express();
+
+app.use('/api/users', usersRouter);
 
 // cross-origin issues
 app.use(function(req, res, next) {
