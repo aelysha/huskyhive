@@ -1,19 +1,19 @@
-import { Button, AppBar, Toolbar, Typography, Card, CardContent, Box, CardMedia, Avatar, Stack, IconButton } from '@mui/material';
+import { Button, Typography, Card, CardContent, Box, CardMedia, Avatar, IconButton } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { Link } from 'react-router-dom'; 
 
-const EventCard = () => {
+const EventCard = (props) => {
+  const {
+      rsoName,
+      rsoLogo,
+      remainingTime,
+      eventImage,
+      eventTitle,
+      eventDate,
+      eventDescr
+    } = props;
     return (
-      <Card
-        sx={{
-          borderRadius: 3,
-          overflow: 'hidden',
-          maxWidth: 400,
-          position: 'relative',
-          border: '1px solid #ccc',
-          boxShadow: 3,
-          marginTop: 2
-        }}
-      >
+      <Card sx={{ width: 400, height: 450, borderRadius: 3, overflow: 'hidden', position: 'relative', border: '1px solid #ccc', boxShadow: 3, marginTop: 2, display: 'flex', flexDirection: 'column'}}>
         {/* Header */}
         <Box
           sx={{
@@ -26,15 +26,15 @@ const EventCard = () => {
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Avatar
-              src="logo512.png"
-              alt="MESH UW"
+              src={rsoLogo}
+              alt={rsoName}
               sx={{ width: 40, height: 40 }}
             />
             <Box>
               <Typography variant="subtitle2" fontWeight="bold">
-                MESH UW
+                {rsoName}
               </Typography>
-              <Typography variant="caption">in 1 day</Typography>
+              <Typography variant="caption">{remainingTime}</Typography>
             </Box>
           </Box>
   
@@ -44,37 +44,33 @@ const EventCard = () => {
         </Box>
   
         {/* Image */}
-        <CardMedia
-          component="img"
-          image="logo512.png"
-          alt="PRISMATIC"
-          sx={{ height: 180, objectFit: 'cover' }}
-        />
+        <CardMedia component="img" image={eventImage} alt={eventTitle} sx={{ height: 150, objectFit: 'cover' }} />
   
         {/* Content */}
-        <CardContent sx={{ backgroundColor: '#dccde2' }}>
+        <CardContent sx={{ backgroundColor: '#dccde2', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent:"space-between" }}>
           <Typography variant="h6" fontWeight="bold">
-            PRISMATIC
+            {eventTitle}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            May 17th, 4:00pm - 7:00pm
+            {eventDate}
           </Typography>
-          <Typography variant="body2" sx={{ mb: 2 }}>
-            We invite you to join us for our annual fashion show! Taking place
-            May 17th from 4–7PM at the Nippon Kan Theatre, this is an exhibition
-            of the talents and creativity of Seattle's own fashion designers.
+          <Typography variant="body2" sx={{ mb: 2, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {eventDescr}
           </Typography>
           <Box display="flex" justifyContent="flex-end" mt={2}>
-            <Button
-                variant="contained"
-                sx={{ borderRadius: '62rem',
-                backgroundColor: '#5e4b8b',
-                '&:hover': { backgroundColor: '#4b3c6f' },
-                textTransform: 'none',
-                }}
-            >
-                View More
-            </Button>
+            <Link to="/Events" textDecoration="none">
+              <Button
+                  variant="contained"
+                  sx={{ borderRadius: '62rem',
+                  backgroundColor: '#5e4b8b',
+                  '&:hover': { backgroundColor: '#4b3c6f' },
+                  textTransform: 'none',
+                  marginTop: 'auto'
+                  }}
+              >
+                  View More
+              </Button>
+            </Link>
           </Box>
         </CardContent>
       </Card>
