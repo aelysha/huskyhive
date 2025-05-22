@@ -33,6 +33,8 @@ function App(props) {
                 <Route path="*" element={<LandingPage />} />
                 <Route path="/Home" element={<EventCarousel />} />
                 <Route path="/SignIn" element={<SignIn />} />
+                
+                <Route path="/RSO" element={<RSO />} />
               </Routes>
             </div>
             <Footer />
