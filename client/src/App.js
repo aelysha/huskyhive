@@ -35,6 +35,7 @@ function App(props) {
                 <Route path="/SignIn" element={<SignIn />} />
                 
                 <Route path="/RSO" element={<RSO />} />
+                <Route path="/Event" element={<Event />} />
               </Routes>
             </div>
             <Footer />

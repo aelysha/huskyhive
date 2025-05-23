@@ -150,7 +150,10 @@ function RSO(props) {
                         borderWidth: 3,
                         borderStyle: 'solid',
                         borderColor: 'rgb(123, 117, 130)',
-                        borderLeft: 'none'
+                        borderLeft: 'none',
+                        justifyContent: 'space-between',
+                        padding: 1
+                        
                       }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Avatar src='' alt='' width='25%' />
@@ -219,11 +222,11 @@ function RSO(props) {
                     {/* Question Bubble */}
                     <Box
                       sx={{
+                        color: theme.palette.primary.light,
                         px: 2.5,
                         py: 1,
                         borderRadius: '1.5rem',
                         alignSelf: 'flex-start',
-                        fontSize: { xs: '0.9rem', sm: '1rem' },
                         maxWidth: '100%',
                       }}
                     >
@@ -234,8 +237,6 @@ function RSO(props) {
                     <Typography
                       variant="body1"
                       sx={{
-                        fontSize: { xs: '1rem', sm: '1.25rem' },
-                        fontWeight: 400,
                         color: theme.palette.text.primary,
                       }}
                     >
@@ -248,14 +249,10 @@ function RSO(props) {
                         variant="contained"
                         endIcon={<ArrowForwardIcon />}
                         sx={{
-                          borderRadius: '2rem',
+                          borderRadius: '1rem',
                           textTransform: 'none',
-                          fontWeight: 'bold',
                           px: 2.5,
                           py: 0.5,
-                          fontSize: { xs: '0.875rem', sm: '1rem' },
-                          '&:hover': {
-                          },
                         }}
                       >
                         20 more answers
