@@ -1,4 +1,4 @@
-import { Button, Typography, Card, CardContent, Box, CardMedia, Avatar, IconButton } from '@mui/material';
+import { Button, Typography, Card, CardContent, Box, CardMedia, Avatar, IconButton, useTheme } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
 import { Link } from 'react-router-dom'; 
 
@@ -6,22 +6,24 @@ const AnnouncementCard2 = (props) => {
   const {
       rsoName,
       rsoLogo,
-      remainingTime,
+      timePosted,
       announcementImage,
       announcementTitle,
       announcementDate,
       announcementDescr
     } = props;
+
+    const theme = useTheme();
+  
     return (
-      <Card sx={{ width: 400, height: 450, borderRadius: 3, overflow: 'hidden', position: 'relative', border: '1px solid #ccc', boxShadow: 3, marginTop: 2, display: 'flex', flexDirection: 'column'}}>
+      <Card sx={{ width: 400, height: 450, borderRadius: 3, overflow: 'hidden', position: 'relative', border: '1px solid #ccc', boxShadow: 3, marginY: 2, display: 'flex', flexDirection: 'column'}}>
         {/* Header */}
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            p: 2,
-            backgroundColor: '#dccde2',
+            p: 2
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -34,7 +36,7 @@ const AnnouncementCard2 = (props) => {
               <Typography variant="subtitle2" fontWeight="bold">
                 {rsoName}
               </Typography>
-              <Typography variant="caption">{remainingTime}</Typography>
+              <Typography variant="caption">{timePosted}</Typography>
             </Box>
           </Box>
   
@@ -47,7 +49,7 @@ const AnnouncementCard2 = (props) => {
         <CardMedia component="img" image={announcementImage} alt={announcementTitle} sx={{ height: 150, objectFit: 'cover' }} />
   
         {/* Content */}
-        <CardContent sx={{ backgroundColor: '#dccde2', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent:"space-between" }}>
+        <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent:"space-between" }}>
           <Typography variant="h6" fontWeight="bold">
             {announcementTitle}
           </Typography>
@@ -62,8 +64,8 @@ const AnnouncementCard2 = (props) => {
               <Button
                   variant="contained"
                   sx={{ borderRadius: '62rem',
-                  backgroundColor: '#5e4b8b',
-                  '&:hover': { backgroundColor: '#4b3c6f' },
+                  backgroundColor: theme.palette.secondary.main,
+                  '&:hover': { backgroundColor: theme.palette.primary.dark },
                   textTransform: 'none',
                   marginTop: 'auto'
                   }}

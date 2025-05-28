@@ -1,4 +1,4 @@
-import { Button, Typography, Card, CardContent, Box, CardMedia } from '@mui/material';
+import { Button, Typography, Card, CardContent, Box, CardMedia, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const EventCard = (props) => {
@@ -8,9 +8,12 @@ const EventCard = (props) => {
       officerPosition,
       officerEmail
     } = props;
+
+    const theme = useTheme();
+
     return (
         <>
-           <Card sx={{ width: 300, height: 400, borderRadius: 3, overflow: 'hidden', position: 'relative', border: '1px solid #ccc', boxShadow: 3, marginTop: 2, display: 'flex', flexDirection: 'column'}}>
+           <Card sx={{ width: 300, height: 400, borderRadius: 3, overflow: 'hidden', position: 'relative', border: '1px solid #ccc', boxShadow: 3, marginY: 2, display: 'flex', flexDirection: 'column'}}>
                 {/* Header */}
                 <Box
                 sx={{
@@ -18,7 +21,7 @@ const EventCard = (props) => {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     p: 2,
-                    backgroundColor: '#dccde2',
+                    backgroundColor: theme.palette.custom.cardContainer,
                 }}
                 ></Box>
         
@@ -26,7 +29,7 @@ const EventCard = (props) => {
                 <CardMedia component="img" image={officerImage} sx={{ height: 200, objectFit: 'cover' }} />
         
                 {/* Content */}
-                <CardContent sx={{ backgroundColor: '#dccde2', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent:"space-between" }}>
+                <CardContent sx={{ backgroundColor: theme.palette.custom.cardContainer, flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent:"space-between" }}>
                     <Typography variant="h5" sx={{ textAlign:'center' }}>
                         {officerName}
                     </Typography>
@@ -38,8 +41,8 @@ const EventCard = (props) => {
                             <Button
                                 variant="contained"
                                 sx={{ borderRadius: '62rem',
-                                backgroundColor: '#5e4b8b',
-                                '&:hover': { backgroundColor: '#4b3c6f' },
+                                backgroundColor: theme.palette.secondary.main,
+                                '&:hover': { backgroundColor: theme.palette.primary.dark },
                                 textTransform: 'none',
                                 marginTop: 'auto'
                                 }}

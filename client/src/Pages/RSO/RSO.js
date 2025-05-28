@@ -156,7 +156,7 @@ function RSO(props) {
                         
                       }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Avatar src='' alt='' width='25%' />
+                  <Avatar src={announcements[0].rsoLogo} alt="MESH" width='25%' />
                   <Stack width='60%'>
                     <Typography variant='h5' fontWeight='bold'>MESH UW</Typography>
                     <ButtonGroup disableElevation fullWidth sx={{ overflow: 'hidden', width: '95%' }}>
@@ -288,24 +288,24 @@ function RSO(props) {
                         borderColor: 'secondary',
                         borderRight: 'none'
                       }}>
-                <img src='' alt='' style={{ objectFit: 'cover' }}/>
+                <img src={announcements[0].announcementImage} alt='' style={{ objectFit: 'cover', width: '100%', height:'100%', borderTopLeftRadius: '1rem', borderBottomLeftRadius: '1rem' }}/>
               </Box>
             </Box>
             {/* RSO Hook and Description */}
-            <Typography variant='h5'>If you're interested in fashion in any aspect - designing, admiring, styling - you've come to the right place.</Typography>
-            <Box sx={{ width: '90%', mx: 'auto', my: 2 }}>
-              <Divider />
+            <Box sx={{mx: 5, marginTop: 2}}>
+              <Typography variant='h5' >If you're interested in fashion in any aspect - designing, admiring, styling - you've come to the right place.</Typography>
+              <Divider sx={{ width: '90%', mx: 'auto', my: 2 }}/>
+              <Typography variant='h6'>Welcome to MESH, a fashion-design focused organization dedicated to cultivating creativity and style! Our primary focus is on building a community that embraces members of all skill levels with sincerity and dedication. Whether you're a seasoned designer or a novice, our workshops are created to be accessible and beginner-friendly, providing everyone with an opportunity to learn and grow. These workshops will empower you with essential skills, from the fundamentals of sketching to the intricacies of sewing, enabling you to bring your unique fashion ideas to fruition with proficiency and precision.</Typography>
+              <Typography variant='h6'></Typography>
+              <Typography variant='h6'>Beyond honing our members' talents, we also take immense pride in recognizing their achievements. Our annual educational EXPO held every February, is a fun social event that celebrates the our community's creativity! We bring together fashion organizations from all over Seattle to showcase their talent and provide resources for students wanting to continue fashion outside of UW!</Typography>
+              <Typography variant='h6'></Typography>
+              <Typography variant='h6'>In May, our student-led fashion show becomes the stage for emerging designers to display their visionary creations. It is a platform that not only exhibits their talents but also encourages innovation and pushes the boundaries of contemporary style.</Typography>
+              <Typography variant='h6'></Typography>
+              <Typography variant='h6'>To stay connected with the latest updates on our events and to gain exclusive insights into the world of fashion, follow us on Instagram and join our community on Discord. See you at our next event!</Typography>
             </Box>
-            <Typography variant='h6'>Welcome to MESH, a fashion-design focused organization dedicated to cultivating creativity and style! Our primary focus is on building a community that embraces members of all skill levels with sincerity and dedication. Whether you're a seasoned designer or a novice, our workshops are created to be accessible and beginner-friendly, providing everyone with an opportunity to learn and grow. These workshops will empower you with essential skills, from the fundamentals of sketching to the intricacies of sewing, enabling you to bring your unique fashion ideas to fruition with proficiency and precision.</Typography>
-            <Typography variant='h6'></Typography>
-            <Typography variant='h6'>Beyond honing our members' talents, we also take immense pride in recognizing their achievements. Our annual educational EXPO held every February, is a fun social event that celebrates the our community's creativity! We bring together fashion organizations from all over Seattle to showcase their talent and provide resources for students wanting to continue fashion outside of UW!</Typography>
-            <Typography variant='h6'></Typography>
-            <Typography variant='h6'>In May, our student-led fashion show becomes the stage for emerging designers to display their visionary creations. It is a platform that not only exhibits their talents but also encourages innovation and pushes the boundaries of contemporary style.</Typography>
-            <Typography variant='h6'></Typography>
-            <Typography variant='h6'>To stay connected with the latest updates on our events and to gain exclusive insights into the world of fashion, follow us on Instagram and join our community on Discord. See you at our next event!</Typography>
             <Divider sx={{ my: 2 }} />
             {/* RSO Events */}
-            <Box>
+            <Box sx={{mx: 5}}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                     <Typography variant='h5'>MESH UW's Events</Typography>
                     <Link to="/RSOs" style={{ textDecoration: 'none' }}>
@@ -329,24 +329,22 @@ function RSO(props) {
                     </Box>
                   ))}
                 </Box>
-            </Box>
-            <Box sx={{ width: '90%', mx: 'auto', my: 2 }}>
-              <Divider />
+                 <Divider sx={{ width: '90%', mx: 'auto', my: 2 }}/>
             </Box>
             {/* RSO Announcements */}
-            <Typography variant='h5'>MESH UW's Announcements</Typography>
-            <Box>
+            <Box sx={{mx: 5}}>
+                <Typography variant='h5'>MESH UW's Announcements</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'center', overflowX: 'auto', gap: 2 }}>
                   {announcements.slice(0,3).map((announcement, index) => (
                     <Box key={index} sx={{ flex: '0 0 auto' }}>
                       <AnnouncementCard2
                         rsoName={announcement.rsoName}
                         rsoLogo={announcement.rsoLogo}
-                        remainingTime={announcement.remainingTime}
-                        eventImage={announcement.eventImage}
-                        eventTitle={announcement.eventTitle}
-                        eventDate={announcement.eventDate}
-                        eventDescr={announcement.eventDescr}
+                        timePosted={announcement.timePosted}
+                        announcementImage={announcement.announcementImage}
+                        announcementTitle={announcement.announcementTitle}
+                        announcementDate={announcement.announcementDate}
+                        announcementDescr={announcement.announcementDescr}
                       />
                     </Box>
                   ))}
@@ -354,32 +352,34 @@ function RSO(props) {
             </Box>
             <Divider sx={{ my: 2 }} />
             {/* RSO Officers */}
-            <Typography variant='h5'>MESH UW's Officers</Typography>
-            <Box>
-                <div className="relative w-full overflow-visible">
-                    <Swiper
-                        slidesPerView={4}
-                        spaceBetween={30}
-                        initialSlide={0}   
-                        pagination={{ clickable: true }}
-                        modules={[Pagination]}
-                        className="mySwiper"
-                    >
-                    {officers.map((officer, index) => (
-                        <SwiperSlide
-                        key={index}
-                        className="transition-transform"
-                        >
-                            <OfficerCard
-                            officerImage={officer.officerImage}
-                            officerName={officer.officerName}
-                            officerPosition={officer.officerPosition}
-                            officerEmail={officer.officerEmail}
-                            />
-                        </SwiperSlide>
-                    ))}
-                    </Swiper>
-                </div>
+            <Box sx={{mx: 5}}>
+              <Typography variant='h5'>MESH UW's Officers</Typography>
+              <Box>
+                  <div className="relative w-full overflow-visible">
+                      <Swiper
+                          slidesPerView={4}
+                          spaceBetween={30}
+                          initialSlide={0}   
+                          pagination={{ clickable: true }}
+                          modules={[Pagination]}
+                          className="mySwiper"
+                      >
+                      {officers.map((officer, index) => (
+                          <SwiperSlide
+                          key={index}
+                          className="transition-transform"
+                          >
+                              <OfficerCard
+                              officerImage={officer.officerImage}
+                              officerName={officer.officerName}
+                              officerPosition={officer.officerPosition}
+                              officerEmail={officer.officerEmail}
+                              />
+                          </SwiperSlide>
+                      ))}
+                      </Swiper>
+                  </div>
+              </Box>
             </Box>
         </>
     );
