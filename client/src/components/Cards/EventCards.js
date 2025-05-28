@@ -61,7 +61,7 @@ const EventCard = (props) => {
           {eventDescr}
           </Typography>
           <Box display="flex" justifyContent="flex-end" mt={2}>
-            <Link to="/Events" textDecoration="none">
+            <Link to={`/Event/${eventTitle}`} textDecoration="none">
               <Button
                   variant="contained"
                   sx={{ borderRadius: '62rem',

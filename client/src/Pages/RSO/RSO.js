@@ -2,6 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
@@ -137,6 +140,31 @@ const interest_tags = ['fashion', 'design', 'creative', 'runway', 'clothing']
 function RSO(props) {
     const theme = useTheme();
 
+    const { rso_name } = useParams();
+    const [rso, setRso] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const fetchRso = async () => {
+        try {
+          const res = await fetch(`http://localhost:5000/api/rsos/${rso_name}`);
+          console.log('Raw fetch response:', res);
+          const data = await res.json();
+          console.log("RSO data from server:", data); 
+          setRso(data.rso);
+        } catch (err) {
+          console.error('Failed to fetch rso:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchRso();
+    }, [rso_name]);
+
+    if (loading) return <p>Loading...</p>;
+    if (!rso) return <p>RSO not found</p>;
+
     return (
         <>
             {/* RSO Header */}
@@ -158,7 +186,7 @@ function RSO(props) {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Avatar src={announcements[0].rsoLogo} alt="MESH" width='25%' />
                   <Stack width='60%'>
-                    <Typography variant='h5' fontWeight='bold'>MESH UW</Typography>
+                    <Typography variant='h5' fontWeight='bold'>{rso.rso_name}</Typography>
                     <ButtonGroup disableElevation fullWidth sx={{ overflow: 'hidden', width: '95%' }}>
                       <Button
                         disableRipple
@@ -293,6 +321,8 @@ function RSO(props) {
             </Box>
             {/* RSO Hook and Description */}
             <Box sx={{mx: 5, marginTop: 2}}>
+              <Typography variant='h5' >{rso.description}</Typography>
+              {/* 
               <Typography variant='h5' >If you're interested in fashion in any aspect - designing, admiring, styling - you've come to the right place.</Typography>
               <Divider sx={{ width: '90%', mx: 'auto', my: 2 }}/>
               <Typography variant='h6'>Welcome to MESH, a fashion-design focused organization dedicated to cultivating creativity and style! Our primary focus is on building a community that embraces members of all skill levels with sincerity and dedication. Whether you're a seasoned designer or a novice, our workshops are created to be accessible and beginner-friendly, providing everyone with an opportunity to learn and grow. These workshops will empower you with essential skills, from the fundamentals of sketching to the intricacies of sewing, enabling you to bring your unique fashion ideas to fruition with proficiency and precision.</Typography>
@@ -302,12 +332,13 @@ function RSO(props) {
               <Typography variant='h6'>In May, our student-led fashion show becomes the stage for emerging designers to display their visionary creations. It is a platform that not only exhibits their talents but also encourages innovation and pushes the boundaries of contemporary style.</Typography>
               <Typography variant='h6'></Typography>
               <Typography variant='h6'>To stay connected with the latest updates on our events and to gain exclusive insights into the world of fashion, follow us on Instagram and join our community on Discord. See you at our next event!</Typography>
-            </Box>
+                */}
+              </Box>
             <Divider sx={{ my: 2 }} />
             {/* RSO Events */}
             <Box sx={{mx: 5}}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
-                    <Typography variant='h5'>MESH UW's Events</Typography>
+                    <Typography variant='h5'>{rso.rso_name}'s Events</Typography>
                     <Link to="/RSOs" style={{ textDecoration: 'none' }}>
                         <Button variant="contained" size="large" sx={{ borderRadius: '62rem', backgroundColor: '#5e4b8b', '&:hover': { backgroundColor: '#4b3c6f' }, textTransform: 'none', width: '10rem'}}>
                             View All Events
@@ -333,7 +364,7 @@ function RSO(props) {
             </Box>
             {/* RSO Announcements */}
             <Box sx={{mx: 5}}>
-                <Typography variant='h5'>MESH UW's Announcements</Typography>
+                <Typography variant='h5'>{rso.rso_name}'s Announcements</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'center', overflowX: 'auto', gap: 2 }}>
                   {announcements.slice(0,3).map((announcement, index) => (
                     <Box key={index} sx={{ flex: '0 0 auto' }}>
@@ -353,7 +384,7 @@ function RSO(props) {
             <Divider sx={{ my: 2 }} />
             {/* RSO Officers */}
             <Box sx={{mx: 5}}>
-              <Typography variant='h5'>MESH UW's Officers</Typography>
+              <Typography variant='h5'>{rso.rso_name}'s Officers</Typography>
               <Box>
                   <div className="relative w-full overflow-visible">
                       <Swiper

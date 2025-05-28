@@ -36,6 +36,9 @@ function App(props) {
                 
                 <Route path="/RSO" element={<RSO />} />
                 <Route path="/Event" element={<Event />} />
+
+                <Route path="/RSO/:rso_name" element={<RSO />} />
+                <Route path="/Event/:title" element={<Event />} />
               </Routes>
             </div>
             <Footer />

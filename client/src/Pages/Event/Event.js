@@ -2,6 +2,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
@@ -140,6 +143,29 @@ const interest_tags = ['fashion', 'design', 'creative', 'runway', 'clothing']
 function Event(props) {
     const theme = useTheme();
     
+    const { title } = useParams();
+    const [event, setEvent] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const fetchEvent = async () => {
+        try {
+          const res = await fetch(`http://localhost:5000/api/events/${title}`);
+          const data = await res.json();
+          setEvent(data);
+        } catch (err) {
+          console.error('Failed to fetch event:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchEvent();
+    }, [title]);
+
+    if (loading) return <p>Loading...</p>;
+    if (!event) return <p>Event not found</p>;
+
         return (
             <>
                 {/* RSO Header */}
@@ -178,7 +204,7 @@ function Event(props) {
                         >
                         {/* Title */}
                         <Typography variant="h3" fontWeight="bold" sx={{ mb: 1 }}>
-                            DECEPTACON
+                            {event.title}
                         </Typography>
 
                         {/* Event Card */}
@@ -194,19 +220,19 @@ function Event(props) {
                         >
                             {/* Host */}
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                            <Avatar src={announcements[0].rsoLogo} alt="MESH" />
-                            <Box
-                                sx={{
-                                backgroundColor: theme.palette.custom.cardContainer,
-                                paddingX: 2,
-                                paddingY: 0.5,
-                                borderRadius: '1rem',
-                                }}
-                            >
-                                <Typography variant="body1" >
-                                Event hosted by <b>MESH UW</b>
-                                </Typography>
-                            </Box>
+                              <Avatar src={announcements[0].rsoLogo} alt="MESH" />
+                              <Box
+                                  sx={{
+                                  backgroundColor: theme.palette.custom.cardContainer,
+                                  paddingX: 2,
+                                  paddingY: 0.5,
+                                  borderRadius: '1rem',
+                                  }}
+                              >
+                                  <Typography variant="body1" >
+                                  Event hosted by <b>{event.RSOProfile.rso_name}</b>
+                                  </Typography>
+                              </Box>
                             </Box>
 
                             {/* Details */}
@@ -226,7 +252,7 @@ function Event(props) {
                                       <CalendarMonthIcon fontSize="medium"/>
                                     </IconButton>
                                     <Typography>
-                                    Saturday, February 22, 1:00pm – 5:00pm
+                                      {event.date}, {event.start_time} - {event.end_time}
                                     </Typography>
                                 </Box>
 
@@ -235,7 +261,7 @@ function Event(props) {
                                     <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }}>
                                       <LocationOnIcon fontSize="medium"/>
                                     </IconButton>
-                                    <Typography>HUB 211</Typography>
+                                    <Typography>{event.location} {event.room_details}</Typography>
                                 </Box>
 
                                 {/* Price */}
@@ -285,6 +311,8 @@ function Event(props) {
                 <Divider sx={{ my: 2 }} />
                 {/* RSO Hook and Description */}
                 <Box sx={{mx: 5}}>
+                  <Typography variant='h5'>{event.description}</Typography>
+                  {/*
                   <Typography variant='h5'>You are cordially invited to DECEPTACON 🎭</Typography>
                   <Box sx={{ width: '90%', mx: 'auto', my: 2 }}>
                     <Divider />
@@ -292,12 +320,13 @@ function Event(props) {
                   <Typography variant='h6'>An all-afternoon event which highlights the UW and Seattle fashion scenes, in collaboration with many on and off campus organizations.</Typography>
                   <Typography variant='h6'>There will be photo booths available, as well as a fashion walk in collaboration with different cultural clubs from UW. Organizations that are tabling will be providing a mix of workshops, fashion-related information, and vending. We will also have panelists and performers joining us on stage</Typography>
                   <Typography variant='h6'>RSVP today! Tickets are on a sliding scale of $5-10, Venmo MESH-UW with your full name.</Typography>
+                  */}
                 </Box>
                 <Divider sx={{ my: 2 }} />
                 {/* RSO Events */}
                 <Box sx={{mx: 5}}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
-                        <Typography variant='h5'>View MESH UW's Events</Typography>
+                        <Typography variant='h5'>View {event.RSOProfile.rso_name}'s Events</Typography>
                         <Link to="/RSOs" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" size="large" sx={{ borderRadius: '62rem', backgroundColor: theme.palette.secondary.main, '&:hover': { backgroundColor: theme.palette.primary.dark  }, textTransform: 'none', width: '10rem'}}>
                                 View All Events
@@ -322,7 +351,7 @@ function Event(props) {
                 </Box>
                 <Divider sx={{ my: 2 }} />
                 {/* RSO Announcements */}
-                <Typography variant='h5' sx={{mx: 5}}>View MESH UW's Recent Announcements</Typography>
+                <Typography variant='h5' sx={{mx: 5}}>View {event.RSOProfile.rso_name}'s Recent Announcements</Typography>
                 <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'center', overflowX: 'auto', gap: 2 }}>
                       {announcements.slice(0,3).map((announcement, index) => (

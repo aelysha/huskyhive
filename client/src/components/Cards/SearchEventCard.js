@@ -7,7 +7,8 @@ import {
     Box, 
     Button, 
     Avatar, 
-    IconButton 
+    IconButton,
+    Link 
   } from '@mui/material';
   import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
   
@@ -27,12 +28,7 @@ import {
    *   - date: Formatted event date string
    * @param {Function} props.onViewEvent - Optional callback for view event button
    */
-  const EventCard = ({ event, onViewEvent }) => {
-    const handleViewEvent = () => {
-      if (typeof onViewEvent === 'function') {
-        onViewEvent(event);
-      }
-    };
+  const EventCard = ({ event }) => {
   
     return (
       <Card sx={{ 
@@ -126,19 +122,20 @@ import {
           </Box>
           
           <Box display="flex" justifyContent="flex-end" mt={2}>
-            <Button 
-              variant="contained"
-              onClick={handleViewEvent}
-              sx={{
-                borderRadius: '62rem',
-                backgroundColor: '#5e4b8b',
-                '&:hover': { backgroundColor: '#4b3c6f' },
-                textTransform: 'none',
-                px: 3
-              }}
-            >
-              View Event
-            </Button>
+            <Link to={`/Event/${event.title}`} textDecoration="none">
+              <Button 
+                variant="contained"
+                sx={{
+                  borderRadius: '62rem',
+                  backgroundColor: '#5e4b8b',
+                  '&:hover': { backgroundColor: '#4b3c6f' },
+                  textTransform: 'none',
+                  px: 3
+                }}
+              >
+                View Event
+              </Button>
+            </Link>
           </Box>
         </CardContent>
       </Card>
