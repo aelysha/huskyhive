@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./NavBar.css";
-import logo from './imgs/logo.png';
+import logo from './imgs/husky_hive_logo_right.png';
 
 function NavBar() {
   const [showLinks, setShowLinks] = useState(false);

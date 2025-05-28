@@ -12,6 +12,7 @@ import { Button, ButtonGroup, Divider, Typography, Box, Stack, useTheme, Avatar,
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
+import LanguageIcon from '@mui/icons-material/Language';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import EventCard from '../../components/Cards/EventCards';
@@ -135,7 +136,7 @@ const officers = [
   }
 ];
 
-const interest_tags = ['fashion', 'design', 'creative', 'runway', 'clothing']
+//const interest_tags = ['fashion', 'design', 'creative', 'runway', 'clothing']
 
 function RSO(props) {
     const theme = useTheme();
@@ -164,6 +165,12 @@ function RSO(props) {
 
     if (loading) return <p>Loading...</p>;
     if (!rso) return <p>RSO not found</p>;
+
+    const board_members = rso.board_members;
+
+    const interest_tags = rso.interest_tags;
+    
+    const social_media = rso.social_media;
 
     return (
         <>
@@ -221,8 +228,8 @@ function RSO(props) {
                       <IconButton>
                         <InstagramIcon />
                       </IconButton>
-                        <IconButton>
-                      <InstagramIcon />
+                      <IconButton>
+                        <LanguageIcon />
                       </IconButton>
                       <IconButton>
                         <LinkedInIcon />
@@ -395,16 +402,16 @@ function RSO(props) {
                           modules={[Pagination]}
                           className="mySwiper"
                       >
-                      {officers.map((officer, index) => (
+                      {board_members.map((officer, index) => (
                           <SwiperSlide
                           key={index}
                           className="transition-transform"
                           >
                               <OfficerCard
-                              officerImage={officer.officerImage}
-                              officerName={officer.officerName}
-                              officerPosition={officer.officerPosition}
-                              officerEmail={officer.officerEmail}
+                              officerImage={officer.image}
+                              officerName={officer.name}
+                              officerPosition={officer.role}
+                              officerEmail={officer.email}
                               />
                           </SwiperSlide>
                       ))}

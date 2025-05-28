@@ -37,7 +37,7 @@ const EventCard = (props) => {
                         {officerPosition}
                     </Typography>
                     <Box display="flex" justifyContent="center" mt={2}>
-                        <Link to="/Events" textDecoration="none">
+                        <Link to={`mailto:${officerEmail}`} textDecoration="none">
                             <Button
                                 variant="contained"
                                 sx={{ borderRadius: '62rem',
