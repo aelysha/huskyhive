@@ -1,22 +1,14 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
 import { Button, ButtonGroup, Divider, Typography, Box, Stack, useTheme, Avatar, IconButton, Card } from '@mui/material';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Groups2Icon from '@mui/icons-material/Groups2';
 import EventCard from '../../components/Cards/EventCards';
 import AnnouncementCard2 from '../../components/Cards/AnnouncementCards2';
-import OfficerCard from '../../components/Cards/OfficerCards';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -98,41 +90,6 @@ const announcements = [
   }
 ];
 
-const officers = [
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu",
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu",
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu"
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu"
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu"
-  }
-];
-
-const interest_tags = ['fashion', 'design', 'creative', 'runway', 'clothing']
-
 function Event(props) {
     const theme = useTheme();
     
@@ -196,7 +153,7 @@ function Event(props) {
                         }}
                         >
                         {/* Title */}
-                        <Typography variant="h3" fontWeight="bold" sx={{ mb: 1 }}>
+                        <Typography variant="h2" fontWeight="bold" sx={{ mb: 1 }}>
                             {event.title}
                         </Typography>
 
@@ -247,7 +204,7 @@ function Event(props) {
                                     {/*<Typography>
                                       {event.date}, {event.start_time} - {event.end_time}
                                     </Typography>*/}
-                                    <Typography>May 17th, 4:00pm - 7:00pm</Typography>
+                                    <Typography sx={{textDecoration: 'underline', fontSize: "1.4rem"}}>May 17th, 4:00pm - 7:00pm</Typography>
                                 </Box>
 
                                 {/* Location */}
@@ -255,7 +212,7 @@ function Event(props) {
                                     <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }}>
                                       <LocationOnIcon fontSize="medium"/>
                                     </IconButton>
-                                    <Typography>{event.location} {event.room_details}</Typography>
+                                    <Typography sx={{textDecoration: 'underline', fontSize: "1.4rem"}}>{event.location} {event.room_details}</Typography>
                                 </Box>
 
                                 {/* Price */}
@@ -263,7 +220,7 @@ function Event(props) {
                                     <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }} onClick={() => window.open( `${event.pay_service}`, '_blank', 'noopener,noreferrer')}>
                                       <CreditCardIcon fontSize="medium"/>
                                     </IconButton>
-                                    <Typography>Pay on prezo (link on icon)</Typography>
+                                    <Typography sx={{textDecoration: 'underline', fontSize: "1.4rem"}}>Pay on Prezo (link on icon)</Typography>
                                 </Box>
                             </Box>
                         </Box>
@@ -321,7 +278,7 @@ function Event(props) {
                 <Box sx={{mx: 5}}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                         <Typography variant='h5'>View {event.RSOProfile.rso_name}'s Events</Typography>
-                        <Link to="/RSOs" style={{ textDecoration: 'none' }}>
+                        <Link to="/Events" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" size="large" sx={{ borderRadius: '62rem', backgroundColor: theme.palette.secondary.main, '&:hover': { backgroundColor: theme.palette.primary.dark  }, textTransform: 'none', width: '10rem'}}>
                                 View All Events
                             </Button>

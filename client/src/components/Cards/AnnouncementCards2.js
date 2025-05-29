@@ -60,7 +60,7 @@ const AnnouncementCard2 = (props) => {
           {announcementDescr}
           </Typography>
           <Box display="flex" justifyContent="flex-end" mt={2}>
-            <Link to="/Announcements" textDecoration="none">
+            <Link to="/RSOs" textDecoration="none">
               <Button
                   variant="contained"
                   sx={{ borderRadius: '62rem',
