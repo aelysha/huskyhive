@@ -266,7 +266,7 @@ function Event(props) {
 
                                 {/* Price */}
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }}>
+                                    <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }} onClick={() => window.open( `${event.pay_service}`, '_blank', 'noopener,noreferrer')}>
                                       <CreditCardIcon fontSize="medium"/>
                                     </IconButton>
                                     <Typography>$5–$10 (sliding scale) to MESH-UW</Typography>
