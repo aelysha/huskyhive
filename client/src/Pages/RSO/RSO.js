@@ -26,6 +26,8 @@ import event3 from "../HomeV2/assets/event3.png"
 import event4 from "../HomeV2/assets/event4.png"
 import event5 from "../HomeV2/assets/event5.png"
 import event6 from "../HomeV2/assets/event6.png"
+import event7 from "../HomeV2/assets/event7.png"
+import event8 from "../HomeV2/assets/event8.png"
 
 import logo1 from "../HomeV2/assets/logo1.png"
 import logo2 from "../HomeV2/assets/logo2.png"
@@ -34,15 +36,16 @@ import logo4 from "../HomeV2/assets/logo4.png"
 import logo5 from "../HomeV2/assets/logo5.png"
 import logo6 from "../HomeV2/assets/logo6.png"
 
+
 const events = [
   {
-    rsoName: "Hiking Club at UW",
-    rsoLogo: logo1,
+    rsoName: "MESH UW",
+    rsoLogo: logo2,
     remainingTime: "in 1 week",
-    eventImage: event1,
-    eventTitle: "Woodland Park Zoo Urban Hike",
+    eventImage: event8,
+    eventTitle: "Fashion Designing Workshop",
     eventDate: "February 23rd, 10:00 am",
-    eventDescr: "The Wildlife Society and Hiking Club at UW are joining forces for an Urban Hike to Woodland Park Zoo! We’ll be gathering for wildlife and conservation convos as we explore the zoo together on Sunday February 23rd, rain or shine. Those walking",
+    eventDescr: "Ever wanted to design your own runway collection? In collaboration with our friends at @eyelet.creative , we’re hosting a workshop that teaches you the basics of putting together a fashion collection, from concepts to sketches! Join us this Monday at the HUB, signups are in our bio ✏️",
   },
   {
     rsoName: "MESH UW",
@@ -54,52 +57,43 @@ const events = [
     eventDescr: "We invite you to join us for our annual fashion show! Taking place May 17th from 4-7PM at the Nippon Kan Theatre, this is an exhibition of the talents and creativity of Seattle's own fashion designers.",
   },
   {
-    rsoName: "Informatics Undergraduate Association",
-    rsoLogo: logo3,
+    rsoName: "MESH UW",
+    rsoLogo: logo2,
     remainingTime: "in 2 days",
-    eventImage: event3,
-    eventTitle: "IUGA Intern Panel",
-    eventDate: "February 13th, 6:00pm - 7:30pm",
-    eventDescr: "Hear about iSchool students’ internship experiences at top companies. Gain insights & connect with peers!",
+    eventImage: event7,
+    eventTitle: "Deceptacon",
+    eventDate: "February 22nd, 1:00pm - 5:00pm",
+    eventDescr: "An all-afternoon event which highlights the UW and Seattle fashion scenes, in collaboration with many on and off campus organizations. There will be photo booths available, as well as a fashion walk in collaboration with different cultural clubs from UW. Organizations that are tabling will be providing a mix of workshops, fashion-related information, and vending. We will also have panelists and performers joining us on stage"
   }
 ];
 
 const announcements = [
   {
-    rsoName: "Hiking Club at UW",
-    rsoLogo: logo1,
-    remainingTime: "in 1 week",
-    announcementImage: event1,
-    announcementTitle: "Woodland Park Zoo Urban Hike",
+    rsoName: "MESH UW",
+    rsoLogo: logo2,
+    timePosted: "1 week ago",
+    announcementImage: event2,
+    announcementTitle: "Upcoming Event",
     announcementDate: "February 23rd, 10:00 am",
-    announcementDescr: "The Wildlife Society and Hiking Club at UW are joining forces for an Urban Hike to Woodland Park Zoo! We’ll be gathering for wildlife and conservation convos as we explore the zoo together on Sunday February 23rd, rain or shine. Those walking",
+    announcementDescr: "Prismatic is coming up and we want to invite everyone to come and support the event. From volunteering to watching, we'd appreciate the support!",
   },
   {
     rsoName: "MESH UW",
     rsoLogo: logo2,
-    remainingTime: "in 1 day",
-    announcementImage: event2,
-    announcementTitle: "PRISMATIC",
+    timePosted: "2 weeks ago",
+    announcementImage: event7,
+    announcementTitle: "Deceptacon",
     announcementDate: "May 17th, 4:00pm - 7:00pm",
-    announcementDescr: "We invite you to join us for our annual fashion show! Taking place May 17th from 4-7PM at the Nippon Kan Theatre, this is an exhibition of the talents and creativity of Seattle's own fashion designers.",
+    announcementDescr: "Thank you everyone who came out for Deceptacon! It was a great event that couldn't have been done without all of you!",
   },
   {
-    rsoName: "Informatics Undergraduate Association",
-    rsoLogo: logo3,
-    remainingTime: "in 2 days",
-    announcementImage: event3,
-    announcementTitle: "IUGA Intern Panel",
+    rsoName: "MESH UW",
+    rsoLogo: logo2,
+    timePosted: "2 days ago",
+    announcementImage: event2,
+    announcementTitle: "Prismatic Countdown",
     announcementDate: "February 13th, 6:00pm - 7:30pm",
-    announcementDescr: "Hear about iSchool students’ internship experiences at top companies. Gain insights & connect with peers!",
-  },
-  {
-    rsoName: "Traditional Chinese Dance",
-    rsoLogo: logo4,
-    remainingTime: "in 2 weeks",
-    announcementImage: event4,
-    announcementTitle: "TCD 3rd Annual Showcase",
-    announcementDate: "May 18th, 4:00pm - 6:30pm",
-    announcementDescr: "Traditional Chinese Dance at UW (TCDUW) was founded in 2021 by five students with a shared passion for Chinese dance. What began as a small group has grown into a big family of 16 dancers from diverse disciplines and backgrounds, all brought",
+    announcementDescr: "T-Minus two days until PRISMATIC. We got this guys, make sure to RSVP and pay!",
   }
 ];
 
