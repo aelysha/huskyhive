@@ -21,11 +21,9 @@ import {
  Button
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronRight';
+import { Link as RouterLink } from 'react-router-dom';
 import { rsoData } from './data/rsoData';
 import { mapTagsToOverall } from './data/tagMapper';
 import { categories } from './data/categories.js';
@@ -35,14 +33,13 @@ import { useTheme } from '@mui/material/styles';
 const availableCategories = categories.map(c => c.category_name);
 const sortedData = rsoData.sort((a, b) => a.rso_name.localeCompare(b.rso_name));
 
-// Enhanced RSOCard component matching the image design
 const RSOCard = ({ rso }) => {
   const [flipped, setFlipped] = useState(false);
   const theme = useTheme();
 
 
   const handleFlip = (e) => {
-    e.stopPropagation(); // Prevents bubbling if needed
+    e.stopPropagation(); 
     setFlipped(!flipped);
   };
 
@@ -142,7 +139,6 @@ const RSOCard = ({ rso }) => {
             >
               {rso.rso_name}
             </Typography>
-            {/* Flip arrow on front */}
             <ChevronRightIcon 
               onClick={handleFlip}
               sx={{
@@ -216,10 +212,8 @@ const RSOCard = ({ rso }) => {
               }}
             />
             <Button
-              variant="contained"
-              href={rso.link || rso.website || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
+              component={RouterLink}
+              to={`/RSO/${encodeURIComponent(rso.rso_name)}`} // or rso.slug if you use a URL-safe string
               sx={{
                 backgroundColor: '#5e4b8b',
                 color: 'white',
@@ -239,42 +233,6 @@ const RSOCard = ({ rso }) => {
         </Box>
     </Card>
   );
-};
-
-const RSOModal = ({ open, onClose, rso }) => {
-const theme = useTheme();
- if (!rso) return null;
- const socialMedia = rso.social_media ? JSON.parse(rso.social_media) : [];
- return (
-   <Modal open={open} onClose={onClose}>
-     <Box sx={{
-       position: 'absolute',
-       top: '50%',
-       left: '50%',
-       transform: 'translate(-50%, -50%)',
-       width: 500,
-       bgcolor: 'background.paper',
-       borderRadius: 2,
-       boxShadow: 24,
-       p: 4,
-     }}>
-       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-         <Typography variant="h5" fontWeight="bold">{rso.rso_name}</Typography>
-         <IconButton onClick={onClose}><CloseIcon /></IconButton>
-       </Box>
-       <Typography sx={{ mb: 2 }}>{rso.description}</Typography>
-       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-         Category: {rso.rso_type || rso.primaryCategory}
-       </Typography>
-       <Typography variant="h6" sx={{ mb: 1 }}>Contact Information</Typography>
-       {socialMedia.map((media, index) => (
-         <Typography key={index} variant="body2">
-           {Object.keys(media)[0]}: {Object.values(media)[0]}
-         </Typography>
-       ))}
-     </Box>
-   </Modal>
- );
 };
 
 const SearchPage = () => {
@@ -299,9 +257,7 @@ const filteredRSOs = sortedData.filter(rso => {
   const tagsArray = getTagsArray(rso);
   const overallCategories = mapTagsToOverall(tagsArray);
 
-  // New: filter by activeTab
   const matchesTab = activeTab === 'General' ? true : (rso.rso_type?.toLowerCase() === activeTab);
-  console.log('Filtering RSO:', rso.rso_name, 'matchesTab:', matchesTab, 'activeTab:', activeTab);
 
 
   const matchesCategory = selectedCategories.length === 0 || overallCategories.some(cat => selectedCategories.includes(cat));
@@ -348,8 +304,7 @@ const filteredRSOs = sortedData.filter(rso => {
          />
        </Paper>
 
-
-       {/* Navigation Tabs */}
+       {/* Category Tabs */}
        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
          <Tabs value={activeTab} onChange={(e, newValue) => setActiveTab(newValue)} centered>
           <Tab label="General" value="general" />
@@ -359,9 +314,8 @@ const filteredRSOs = sortedData.filter(rso => {
        </Box>
 
 
-       {/* Main Content */}
        <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
-         {/* Filter Panel */}
+         {/* Filter */}
          <Box sx={{
            width: 200,
            minWidth: 200,
@@ -409,13 +363,8 @@ const filteredRSOs = sortedData.filter(rso => {
              </FormGroup>
            </Paper>
          </Box>
-
-
-         {/* RSO Cards Section */}
+         {/* RSO Cards */}
          <Box sx={{ flex: 1, minWidth: 0 }}>
-           {/* Results header would go here if needed */}
-          
-           {/* RSO Cards Grid - 3 cards per row to match image */}
            <Grid container spacing={3}>
              {filteredRSOs.slice(0, 18).map((rso, index) => (
                <Grid
@@ -425,8 +374,8 @@ const filteredRSOs = sortedData.filter(rso => {
                  md={4}
                  key={`${rso.rso_name}-${index}`}
                  sx={{
-                   minWidth: 0, // Allow grid item to shrink
-                   maxWidth: { xs: '100%', sm: '52%', md: '32%' } // Slightly increased maximum widths
+                   minWidth: 0, 
+                   maxWidth: { xs: '100%', sm: '52%', md: '32%' }
                  }}
                >
                  <RSOCard
@@ -440,8 +389,6 @@ const filteredRSOs = sortedData.filter(rso => {
              ))}
            </Grid>
 
-
-           {/* No Results Message */}
            {filteredRSOs.length === 0 && (
              <Box sx={{
                textAlign: 'center',
@@ -459,14 +406,6 @@ const filteredRSOs = sortedData.filter(rso => {
          </Box>
        </Box>
      </Container>
-
-
-     {/* RSO Detail Modal */}
-     <RSOModal
-       open={modalOpen}
-       onClose={() => setModalOpen(false)}
-       rso={selectedRSO}
-     />
    </Box>
  );
 };

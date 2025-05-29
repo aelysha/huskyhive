@@ -97,39 +97,6 @@ const announcements = [
   }
 ];
 
-const officers = [
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu",
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu",
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu"
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu"
-  },
-  {
-    officerImage: event1,
-    officerName: 'Bobbington the Third',
-    officerPosition: "King Bob",
-    officerEmail: "bob@uw.edu"
-  }
-];
-
 //const interest_tags = ['fashion', 'design', 'creative', 'runway', 'clothing']
 
 function RSO(props) {
@@ -184,21 +151,29 @@ function RSO(props) {
                         padding: 1
                         
                       }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Avatar src={announcements[0].rsoLogo} alt="MESH" width='25%' />
+                <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 10 }}>
+                  <Avatar src={"/logos/mesh-logo.jpg"} alt="MESH" sx={{ width: 100, height: 100 }} />
                   <Stack width='60%'>
-                    <Typography variant='h5' fontWeight='bold'>{rso.rso_name}</Typography>
+                    <Typography 
+                      variant="h3" 
+                      fontWeight={900} 
+                      sx={{ lineHeight: 1.1 }}
+                    >
+                      {rso.rso_name}
+                    </Typography>
                     <ButtonGroup disableElevation fullWidth sx={{ overflow: 'hidden', width: '95%' }}>
                       <Button
                         disableRipple
                         sx={{
                           pointerEvents: 'none', // makes it non-clickable
-                          backgroundColor: 'transparent',
+                          backgroundColor: 'white',
                           color: 'text.primary',
                           '&:hover': {
                             backgroundColor: 'transparent', // disables hover effect
                           },
                           borderRadius: '62rem',
+                          border: '1px solid',
+                          borderColor: theme.palette.custom.outline,
                           paddingX: 3,
                         }}
                       >
@@ -208,12 +183,17 @@ function RSO(props) {
 
                       <Button
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         sx={{
                           borderRadius: '62rem',
                           paddingX: 3,
+                          color: '#344C42',
+                          backgroundColor: '#CEE9DC',
+                          borderRadius: '62rem',
+                          border: '1px solid',
+                          borderColor: theme.palette.custom.outline,
+                          paddingX: 3
                         }}
-                        onClick={() => alert('Action triggered!')}
                       >
                         + Join
                       </Button>
@@ -245,16 +225,18 @@ function RSO(props) {
                       display: 'flex',
                       flexDirection: 'column',
                       gap: 2, 
-                      height: '60%'
+                      height: '60%', 
+                      backgroundColor: '#CEE9DC'
                     }}
                   >
                     {/* Question Bubble */}
                     <Box
                       sx={{
-                        color: theme.palette.primary.light,
+                        backgroundColor: '#166B54',
+                        color: 'white',
                         px: 2.5,
-                        py: 1,
-                        borderRadius: '1.5rem',
+                        py: 0.5,
+                        borderRadius: '1rem',
                         alignSelf: 'flex-start',
                         maxWidth: '100%',
                       }}
@@ -282,6 +264,7 @@ function RSO(props) {
                           textTransform: 'none',
                           px: 2.5,
                           py: 0.5,
+                          backgroundColor: '#166B54'
                         }}
                       >
                         20 more answers
@@ -296,8 +279,8 @@ function RSO(props) {
                         variant="contained"
                         size="medium"
                         sx={{ borderRadius: '62rem',
-                        backgroundColor: '#5e4b8b',
-                        '&:hover': { backgroundColor: '#4b3c6f' },
+                        backgroundColor: '#166B54',
+                        '&:hover': { backgroundColor: '#CEE9DC' },
                         textTransform: 'none',
                         marginTop: 'auto',
                         width: '17.5%'
@@ -317,7 +300,7 @@ function RSO(props) {
                         borderColor: 'secondary',
                         borderRight: 'none'
                       }}>
-                <img src={announcements[0].announcementImage} alt='' style={{ objectFit: 'cover', width: '100%', height:'100%', borderTopLeftRadius: '1rem', borderBottomLeftRadius: '1rem' }}/>
+                <img src={'/backdrops/mesh-logo.jpg'} alt='' style={{ objectFit: 'cover', width: '100%', height:'100%', borderTopLeftRadius: '1rem', borderBottomLeftRadius: '1rem' }}/>
               </Box>
             </Box>
             {/* RSO Hook and Description */}

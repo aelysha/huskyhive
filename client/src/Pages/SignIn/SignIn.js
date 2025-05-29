@@ -17,7 +17,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 const SignIn = () => {
   const handleLoginSuccess = (credentialResponse) => {
     console.log(credentialResponse);
-    // Redirect to home page after successful login
+    // Redirect
     window.location.href = '/home';
   };
 
@@ -47,7 +47,7 @@ const SignIn = () => {
               flexDirection: 'column'
             }
           }}>
-            {/* Left Side - Husky Image */}
+
             <Box sx={{ 
               flex: 1,
               backgroundColor: 'transparent',
@@ -75,7 +75,6 @@ const SignIn = () => {
               </Box>
             </Box>
 
-            {/* Right Side - Login Form */}
             <Box sx={{ 
               flex: 1,
               backgroundColor: 'rgba(197, 180, 227, 0.5)',
@@ -89,7 +88,6 @@ const SignIn = () => {
                 width: '100%',
                 maxWidth: '500px'
               }}>
-                {/* Student Side Label */}
                 <Typography 
                   variant="h6" 
                   sx={{ 
@@ -117,7 +115,7 @@ const SignIn = () => {
                   Log In
                 </Typography>
 
-                {/* Google Login Button - Centered and Scaled */}
+                {/* Google Login */}
                 <Box sx={{ 
                   display: 'flex',
                   justifyContent: 'center',

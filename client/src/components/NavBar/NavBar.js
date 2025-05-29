@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import "./NavBar.css";
 import logo from './imgs/husky_hive_logo_right.png';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import '@fontsource/encode-sans-expanded/700.css';
 
 function NavBar() {
   const [showLinks, setShowLinks] = useState(false);
