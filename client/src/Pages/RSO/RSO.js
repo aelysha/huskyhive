@@ -15,9 +15,9 @@ import EmailIcon from '@mui/icons-material/Email';
 import LanguageIcon from '@mui/icons-material/Language';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Groups2Icon from '@mui/icons-material/Groups2';
-import EventCard from '../../components/Cards/EventCards';
-import AnnouncementCard2 from '../../components/Cards/AnnouncementCards2';
-import OfficerCard from '../../components/Cards/OfficerCards';
+import EventCardMESH from '../../components/Cards/EventCardsMESH';
+import AnnouncementCardMESH from '../../components/Cards/AnnouncementCardsMESH';
+import OfficerCardMESH from '../../components/Cards/OfficerCardsMESH';
 
 //TO DELETE CAUSE DUMMY DATA
 import event1 from "../HomeV2/assets/event1.png"
@@ -35,6 +35,11 @@ import logo3 from "../HomeV2/assets/logo3.png"
 import logo4 from "../HomeV2/assets/logo4.png"
 import logo5 from "../HomeV2/assets/logo5.png"
 import logo6 from "../HomeV2/assets/logo6.png"
+
+// const getOfficerImage = (name) => {
+//   const filename = name.toLowerCase().replace(/\s+/g, '-') + '.jpg'; // "Jane Doe" => "jane-doe.jpg"
+//   return `/officer-images/${filename}`;
+// };
 
 
 const events = [
@@ -105,6 +110,8 @@ function RSO(props) {
     const { rso_name } = useParams();
     const [rso, setRso] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [joined, setJoined] = useState(false);
+
 
     useEffect(() => {
       const fetchRso = async () => {
@@ -155,9 +162,9 @@ function RSO(props) {
                   <Avatar src={"/logos/mesh-logo.jpg"} alt="MESH" sx={{ width: 100, height: 100 }} />
                   <Stack width='60%'>
                     <Typography 
-                      variant="h3" 
+                      variant="h4" 
                       fontWeight={900} 
-                      sx={{ lineHeight: 1.1 }}
+                      sx={{ lineHeight: 1.1, py: .2 }}
                     >
                       {rso.rso_name}
                     </Typography>
@@ -182,21 +189,23 @@ function RSO(props) {
                       </Button>
 
                       <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                          borderRadius: '62rem',
-                          paddingX: 3,
-                          color: '#344C42',
-                          backgroundColor: '#CEE9DC',
-                          borderRadius: '62rem',
-                          border: '1px solid',
-                          borderColor: theme.palette.custom.outline,
-                          paddingX: 3
-                        }}
-                      >
-                        + Join
-                      </Button>
+                      variant="contained"
+                      onClick={() => setJoined(true)}
+                      sx={{
+                        borderRadius: '62rem',
+                        paddingX: 3,
+                        backgroundColor: joined ? '#166B54' : '#CEE9DC',
+                        color: joined ? 'white' : '#344C42',
+                        border: '1px solid',
+                        borderColor: theme.palette.custom.outline,
+                        textTransform: 'none',
+                        '&:hover': {
+                          backgroundColor: joined ? '#145D4B' : '#BFE0D3',
+                        },
+                      }}
+                    >
+                      {joined ? '✓ Joined' : '+ Join'}
+                    </Button>
                     </ButtonGroup>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', width:'95%' }}>
                       <IconButton>
@@ -280,7 +289,7 @@ function RSO(props) {
                         size="medium"
                         sx={{ borderRadius: '62rem',
                         backgroundColor: '#166B54',
-                        '&:hover': { backgroundColor: '#CEE9DC' },
+                        '&:hover': { backgroundColor: '#344C42' },
                         textTransform: 'none',
                         marginTop: 'auto',
                         width: '17.5%'
@@ -324,7 +333,7 @@ function RSO(props) {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                     <Typography variant='h5'>{rso.rso_name}'s Events</Typography>
                     <Link to="/RSOs" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" size="large" sx={{ borderRadius: '62rem', backgroundColor: '#5e4b8b', '&:hover': { backgroundColor: '#4b3c6f' }, textTransform: 'none', width: '10rem'}}>
+                        <Button variant="contained" size="large" sx={{ borderRadius: '62rem', backgroundColor: '#166B54', '&:hover': { backgroundColor: '#4b3c6f' }, textTransform: 'none', width: '10rem'}}>
                             View All Events
                         </Button>
                     </Link>
@@ -332,7 +341,7 @@ function RSO(props) {
                 <Box sx={{ display: 'flex', justifyContent: 'center', overflowX: 'auto', gap: 2 }}>
                   {events.slice(0,3).map((event, index) => (
                     <Box key={index} sx={{ flex: '0 0 auto' }}>
-                      <EventCard
+                      <EventCardMESH
                         rsoName={event.rsoName}
                         rsoLogo={event.rsoLogo}
                         remainingTime={event.remainingTime}
@@ -352,7 +361,7 @@ function RSO(props) {
                 <Box sx={{ display: 'flex', justifyContent: 'center', overflowX: 'auto', gap: 2 }}>
                   {announcements.slice(0,3).map((announcement, index) => (
                     <Box key={index} sx={{ flex: '0 0 auto' }}>
-                      <AnnouncementCard2
+                      <AnnouncementCardMESH
                         rsoName={announcement.rsoName}
                         rsoLogo={announcement.rsoLogo}
                         timePosted={announcement.timePosted}
@@ -384,8 +393,8 @@ function RSO(props) {
                           key={index}
                           className="transition-transform"
                           >
-                              <OfficerCard
-                              officerImage={officer.image}
+                              <OfficerCardMESH
+                              officerImage={`/officers/0${index + 1}.png`}
                               officerName={officer.name}
                               officerPosition={officer.role}
                               officerEmail={officer.email}
