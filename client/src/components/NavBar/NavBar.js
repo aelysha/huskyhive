@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./NavBar.css";
 import logo from './imgs/husky_hive_logo_right.png';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function NavBar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -36,8 +37,16 @@ function NavBar() {
       </div>
       
       <div className="right-side">
-        <NavLink to="/signin" className="sign-in-button">
-          Sign In
+        <NavLink to="/signin" className="account-icon-link">
+          <AccountCircleIcon 
+            sx={{ 
+              fontSize: 32, 
+              color: 'white',
+              '&:hover': {
+                color: '#f0f0f0'
+              }
+            }} 
+          />
         </NavLink>
       </div>
     </nav>

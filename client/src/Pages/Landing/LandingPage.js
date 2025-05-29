@@ -186,7 +186,7 @@ const LandingPage = () => {
         {/* Arrow Down */}
         <Box 
           position="absolute" 
-          bottom={200} // larger = moving it up from image container
+          bottom={75} // larger = moving it up from image container
           left={0} 
           right={0} 
           display="flex" 
@@ -236,8 +236,9 @@ const LandingPage = () => {
             color: theme.palette.text.primary, 
             fontSize: '1.5em' 
           }}>
-          Filler text about RSOs, connections and the good vibes they bring. Hive of activity.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          RSOs represent the vibrant hive of activity found across UW's campus.
+          For students searching for meaningful connections, community involvement, and a constant influx of 
+          transformative experiences, Husky Hive is the perfect place for you.
         </Typography>
     </Box>
     <Box 
@@ -303,9 +304,10 @@ const LandingPage = () => {
             fontSize: '1.5em',
             textAlign: 'right'
           }}>
-          Filler text about events and how fun they are yay! 
-          Also outline functionalities about GMaps/GCal/payment integration info. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+          Events are central to the personality, vibrance, and image of UW's RSOs.
+          They serve as a key space to meet peers, explore opportunities, and create buzz.
+          Husky Hive is your one-stop-shop for Event information, including calendar details, 
+          payment information, and mapping to your destination.
         </Typography>
       </Box>
     </Box>
