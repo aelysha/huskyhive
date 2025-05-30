@@ -22,22 +22,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { useTheme } from '@mui/material/styles';
 
-// Import your actual events data
+
 import { events } from './data/eventData';
-
-// RSO mapping based on your data
-const rsoMapping = {
-  '6097e77c-d01a-45c0-be0e-1bddf887a02e': 'Wildlife Society & Hiking Club',
-  '006fe636-1094-4694-b5ba-2f2d9a59d2cc': 'Garden of Ideas & Philosophy Club', 
-  '474797a2-d037-422d-a707-e8baab8c1c78': 'Engineering Societies (ASME/BMES)',
-  '8d47e2da-f1a6-428e-a894-9bb8a73f290b': 'Informatics Student Organization',
-  'ad24b30c-ead9-46e7-bf91-7e66f9541511': 'MESH Fashion',
-  '7d6ff4c0-6878-47eb-8b71-6dfdb1f6dc7c': 'Climbing Club UW', 
-  'af2491e4-f8b2-4857-bd44-af26eb953ef4': 'iQueeries',
-  '5935c906-862e-4af1-b106-a259e85690b1': 'Girls Who Code',
-  'aff7b786-ec99-4bb1-b606-342cd7ea051b': 'Tech Talks & Workshops'
-};
+import { rsoData } from './data/rsoData';
 
 // Helper functions for your data structure
 const formatTime = (timeStr) => {
@@ -116,14 +105,17 @@ const eventTypes = [
 
 // Event Card Component adapted for your data structure
 const EventCard = ({ event }) => {
-  const rsoName = rsoMapping[event.rso_id] || 'Student Organization';
+  const rsoName = event.rso_name ;
+  const rsoDataCard = rsoData.find(rso => rso.rso_name === rsoName);
+  const rsoLogo = rsoDataCard.rso_logo
+  const theme = useTheme();
+
+
   const fullLocation = event.room_details 
     ? `${event.location} ${event.room_details}`
     : event.location;
   const category = categorizeEvent(event);
   
-  // Generate avatar from RSO name
-  const rsoLogo = `https://ui-avatars.com/api/?name=${encodeURIComponent(rsoName)}&background=5e4b8b&color=fff&size=60`;
   
   return (
     <Card 
@@ -153,7 +145,7 @@ const EventCard = ({ event }) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           p: 2,
-          backgroundColor: "#E6DDF0",
+          backgroundColor: 'rgba(220,205,226)',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -163,7 +155,15 @@ const EventCard = ({ event }) => {
             sx={{ width: 40, height: 40 }}
           />
           <Box>
-            <Typography variant="subtitle2" fontWeight="bold" sx={{ fontSize: '0.85rem' }}>
+            <Typography variant="subtitle2" fontWeight="bold" 
+            sx={{
+              fontSize: '0.85rem',
+              display: '-webkit-box',
+              WebkitLineClamp: 1,      // Limit to 1 line
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}>
               {rsoName}
             </Typography>
             <Typography variant="caption">{getRelativeTime(event.start_date)}</Typography>
@@ -172,29 +172,26 @@ const EventCard = ({ event }) => {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <IconButton size="small">
-            <CalendarMonthIcon fontSize="small"/>
+            <CalendarMonthIcon fontSize="medium"/>
           </IconButton>
         </Box>
       </Box>
 
       {/* Image placeholder */}
-      <Box 
-        sx={{ 
-          height: 150, 
-          backgroundColor: '#f5f5f5',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#999'
+      <CardMedia
+        component="img"
+        height="150"
+        image={event.image_url}
+        alt={`${event.title} Event Image`}
+        sx={{
+          objectPosition: 'top'
         }}
-      >
-        <Typography variant="body2">Event Image</Typography>
-      </Box>
+      />
 
       {/* Content */}
       <CardContent 
         sx={{ 
-          backgroundColor: "#E6DDF0", 
+          backgroundColor: 'rgba(220,205,226)',
           flexGrow: 1, 
           display: 'flex', 
           flexDirection: 'column', 
@@ -202,7 +199,16 @@ const EventCard = ({ event }) => {
         }}
       >
         <Box>
-          <Typography variant="h6" fontWeight="bold" sx={{ fontSize: '1rem', mb: 1 }}>
+          <Typography variant="h6" fontWeight="bold"
+           sx={{
+            fontSize: '1rem',
+            mb: 1,
+            display: '-webkit-box',
+            WebkitLineClamp: 1,      // Limit to 2 lines (or 1, depending on space)
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}>
             {event.title}
           </Typography>
           
@@ -211,12 +217,12 @@ const EventCard = ({ event }) => {
           </Typography>
           
           <Typography variant="body2" gutterBottom sx={{ fontSize: '0.85rem', color: 'text.secondary' }}>
-            📍 {fullLocation}
+            {fullLocation}
           </Typography>
         
         </Box>
         
-        <Box display="flex" justifyContent="flex-end" mt={2}>
+        <Box display="flex" justifyContent="flex-end" mt={-4}>
 
           <Button
               component={RouterLink}
@@ -228,7 +234,7 @@ const EventCard = ({ event }) => {
                 textTransform: 'none',
                 px: 3,
                 '&:hover': {
-                  backgroundColor: '#4a3a70',
+                 backgroundColor: '#4a3a70',
                 },
               }}
               onClick={(e) => e.stopPropagation()}
@@ -268,7 +274,7 @@ const EventSearch = () => {
   const filteredEvents = events.filter(event => {
     const matchesSearch = searchQuery.trim() === '' || 
       event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      rsoMapping[event.rso_id]?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.rso_name?.toLowerCase().includes(searchQuery.toLowerCase())
       event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       event.location.toLowerCase().includes(searchQuery.toLowerCase());
     
@@ -299,31 +305,34 @@ const EventSearch = () => {
 
   // Sort events by date
   const sortedEvents = filteredEvents.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+  const theme = useTheme();
+
 
   return (
     <Box sx={{ flexGrow: 1, bgcolor: '#f8f9fa', minHeight: '100vh' }}>
       <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-        {/* Search bar */}
-        <Paper sx={{ 
-          p: '8px 16px', 
-          display: 'flex', 
-          alignItems: 'center', 
-          mb: 3, 
-          borderRadius: 25,
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-        }}>
-          <SearchIcon sx={{ color: '#999', mr: 1 }} />
-          <InputBase 
-            sx={{ 
-              ml: 1, 
-              flex: 1,
-              fontSize: '0.9rem'
-            }} 
-            placeholder="Search Events" 
-            value={searchQuery} 
-            onChange={(e) => setSearchQuery(e.target.value)} 
-          />
-        </Paper>
+    {/* Search Bar */}
+       <Paper sx={{
+         p: '8px 16px',
+         display: 'flex',
+         alignItems: 'center',
+         mb: 3,
+         borderRadius: 25,
+         boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+       }}>
+         <SearchIcon sx={{ color: '#999', mr: 1 }} />
+         <InputBase
+           sx={{
+             ml: 1,
+             flex: 1,
+             fontSize: '1.1rem',
+             color: theme.palette.text.primary
+           }}
+           placeholder="Search for Events"
+           value={searchQuery}
+           onChange={(e) => setSearchQuery(e.target.value)}
+         />
+       </Paper>
 
         <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
           {/* Filter sidebar */}
@@ -336,7 +345,7 @@ const EventSearch = () => {
               p: 2.5,
               boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
             }}>
-              <Typography variant="h6" fontWeight="bold" sx={{ mb: 2, fontSize: '1.1rem', fontFamily: 'Roboto, sans-serif' }}>
+             <Typography variant="h2" fontWeight="bold" sx={{ mb: 2, fontSize: '1.5rem', fontFamily: theme.typography.fontFamily, color: theme.palette.custom.onSecondaryContainer }}>
                 Filters
               </Typography>
               
@@ -352,7 +361,7 @@ const EventSearch = () => {
                   }}
                   onClick={() => setDateExpanded(!dateExpanded)}
                 >
-                  <Typography variant="subtitle2" fontWeight="600" sx={{ fontSize: '0.9rem', color: '#333' }}>
+                <Typography variant="h4" fontWeight="600" sx={{fontSize: '0.9rem', color: theme.palette.custom.onSecondaryContainer }}>
                     Dates
                   </Typography>
                   {dateExpanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
@@ -368,13 +377,20 @@ const EventSearch = () => {
                             size="small"
                             checked={dateFilters.includes(date)} 
                             onChange={() => handleDateChange(date)}
-                            sx={{
-                              color: '#5e4b8b',
-                              '&.Mui-checked': { color: '#5e4b8b' },
+                             sx={{
+                              color: theme.palette.custom.onSurfaceVariant,
+                              '&.Mui-checked': { color: theme.palette.custom.onSurfaceVariant, },
                             }}
                           />
                         }
-                        label={<Typography variant="body2" sx={{ fontSize: '0.8rem' }}>{date}</Typography>}
+                        label={
+                          <Typography variant="body2" sx={{ 
+                            fontSize: '0.8rem',
+                            fontFamily: theme.typography.fontFamily,
+                            color: theme.palette.text.primary
+                          }}>
+                            {date}
+                          </Typography>}
                       />
                     ))}
                   </FormGroup>
@@ -393,7 +409,7 @@ const EventSearch = () => {
                   }}
                   onClick={() => setCategoriesExpanded(!categoriesExpanded)}
                 >
-                  <Typography variant="subtitle2" fontWeight="600" sx={{ fontSize: '0.9rem', color: '#333' }}>
+                <Typography variant="h4" fontWeight="600" sx={{fontSize: '0.9rem', color: theme.palette.custom.onSecondaryContainer }}>
                     Categories
                   </Typography>
                   {categoriesExpanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
@@ -409,17 +425,17 @@ const EventSearch = () => {
                             size="small"
                             checked={selectedTypes.includes(category)}
                             onChange={() => handleTypeChange(category)}
-                            sx={{
-                              color: '#5e4b8b',
-                              '&.Mui-checked': { color: '#5e4b8b' },
+                             sx={{
+                              color: theme.palette.custom.onSurfaceVariant,
+                              '&.Mui-checked': { color: theme.palette.custom.onSurfaceVariant, },
                             }}
                           />
                         }
                         label={
                           <Typography variant="body2" sx={{ 
                             fontSize: '0.8rem',
-                            fontFamily: 'Roboto, sans-serif',
-                            color: '#555'
+                            fontFamily: theme.typography.fontFamily,
+                            color: theme.palette.text.primary
                           }}>
                             {category}
                           </Typography>
@@ -443,7 +459,7 @@ const EventSearch = () => {
                   }}
                   onClick={() => setEventTypesExpanded(!eventTypesExpanded)}
                 >
-                  <Typography variant="subtitle2" fontWeight="600" sx={{ fontSize: '0.9rem', color: '#333' }}>
+                <Typography variant="h4" fontWeight="600" sx={{fontSize: '0.9rem', color: theme.palette.custom.onSecondaryContainer }}>
                     Event Types
                   </Typography>
                   {eventTypesExpanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
@@ -460,16 +476,16 @@ const EventSearch = () => {
                             checked={selectedTypes.includes(type)}
                             onChange={() => handleTypeChange(type)}
                             sx={{
-                              color: '#5e4b8b',
-                              '&.Mui-checked': { color: '#5e4b8b' },
+                              color: theme.palette.custom.onSurfaceVariant,
+                              '&.Mui-checked': { color: theme.palette.custom.onSurfaceVariant, },
                             }}
                           />
                         }
                         label={
                           <Typography variant="body2" sx={{ 
                             fontSize: '0.8rem',
-                            fontFamily: 'Roboto, sans-serif',
-                            color: '#555'
+                            fontFamily: theme.typography.fontFamily,
+                            color: theme.palette.text.primary
                           }}>
                             {type}
                           </Typography>
@@ -485,9 +501,17 @@ const EventSearch = () => {
 
           {/* Event Grid */}
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontFamily: 'Roboto, sans-serif' }}>
-              {sortedEvents.length} of {events.length}
+            <Box 
+              sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              mb: 2,
+            }}
+            >
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontFamily: theme.palette.fontFamily }}>
+              {sortedEvents.length} results
             </Typography>
+           </Box>
             
             <Grid container spacing={3}>
               {sortedEvents.map((event) => (

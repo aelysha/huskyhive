@@ -7,9 +7,11 @@ export const events = [
     location: "Burke Museum",
     room_details: "",
     rso_id: "6097e77c-d01a-45c0-be0e-1bddf887a02e",
+    rso_name: "The Hiking Club at UW",
     is_paid: false,
     rsvp_enabled: true,
     event_id: "270cb5c9-6d0b-4a00-aa62-bf2106d67e22",
+    image_url: "/events/bagel.png"
   },
   {
     title: "Movie Night!",
@@ -19,9 +21,11 @@ export const events = [
     location: "SAV",
     room_details: "264",
     rso_id: "6097e77c-d01a-45c0-be0e-1bddf887a02e",
+    rso_name: "The Hiking Club at UW",
     is_paid: false,
     rsvp_enabled: true,
     event_id: "3b130d46-780c-4f07-8d2e-c76e128dd053",
+    image_url: "/events/movie1.png"
   },
   {
     title: "Garden of Ideas x Philosophy Club Puzzle Contest",
@@ -31,9 +35,11 @@ export const events = [
     location: "SAV",
     room_details: "168",
     rso_id: "006fe636-1094-4694-b5ba-2f2d9a59d2cc",
+    rso_name: "The Garden of Ideas",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "425eb308-9f88-45da-a489-1a34d5eaf3e6",
+    image_url: "/events/puzzle.png"
   },
   {
     title: "Mariners College Night",
@@ -43,9 +49,11 @@ export const events = [
     location: "U-District Station",
     room_details: "",
     rso_id: "474797a2-d037-422d-a707-e8baab8c1c78",
+    rso_name: "American Society of Mechanical Engineers",
     is_paid: true,
     rsvp_enabled: true,
     event_id: "49afc6a7-5f52-4e74-8d39-04a7ca0141f7",
+    image_url: "/events/mariner.png"
   },
   {
     title: "Demystifying Focus Areas",
@@ -55,9 +63,11 @@ export const events = [
     location: "SAV",
     room_details: "166",
     rso_id: "8d47e2da-f1a6-428e-a894-9bb8a73f290b",
+    rso_name: "Informatics Undergraduate Association at the University of Washington",
     is_paid: false,
     rsvp_enabled: true,
     event_id: "58578067-d759-4754-b761-bfe4271cce33",
+     image_url: "/events/info.png"
   },
   {
     title: "PRISMATIC",
@@ -67,9 +77,11 @@ export const events = [
     location: "Nippon Kan Theater",
     room_details: "",
     rso_id: "ad24b30c-ead9-46e7-bf91-7e66f9541511",
+    rso_name: "MESH UW",
     is_paid: true,
     rsvp_enabled: true,
     event_id: "5fa3b03d-face-4f08-9f2b-21c1526085e1",
+     image_url: "/events/prism.png"
   },
   {
     title: "MESH x Eyelet Fashion Collection Designing Workshop",
@@ -79,9 +91,11 @@ export const events = [
     location: "HUB",
     room_details: "145",
     rso_id: "ad24b30c-ead9-46e7-bf91-7e66f9541511",
+    rso_name: "MESH UW",
     is_paid: false,
     rsvp_enabled: true,
     event_id: "647d2dbd-0a83-4234-89ea-7f97199a34eb",
+     image_url: "/events/eyelet.png"
   },
   {
     title: "CCUW Crags Night",
@@ -91,9 +105,11 @@ export const events = [
     location: "Crags Climbing Center @ the IMA",
     room_details: "",
     rso_id: "7d6ff4c0-6878-47eb-8b71-6dfdb1f6dc7c",
+    rso_name: "Climbing Club at the University of Washington",
     is_paid: false,
     rsvp_enabled: true,
     event_id: "66863e85-81a5-46b2-a771-08a62e0d21c1",
+    image_url: "/events/crag.png"
   },
   {
     title: "Craft & Chat on Discord",
@@ -103,9 +119,11 @@ export const events = [
     location: "iQueeries Discord - Meeting Room",
     room_details: "",
     rso_id: "af2491e4-f8b2-4857-bd44-af26eb953ef4",
+    rso_name: "iQueeries",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "6b51824b-6490-4929-8cc6-75d7daea34b3",
+    image_url: "/events/craftchat.png"
   },
   {
     title: "Sculpt & Sip",
@@ -115,9 +133,11 @@ export const events = [
     location: "Loew Hall",
     room_details: "Room 202",
     rso_id: "5935c906-862e-4af1-b106-a259e85690b1",
+    rso_name: "Girls Who Code - College Loops",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "a78526fd-91db-408d-a0b3-18de3de2fe03",
+    image_url: "/events/sculpt.png"
   },
   {
     title: "CCUW Movie Night - Vertical Limit",
@@ -127,9 +147,11 @@ export const events = [
     location: "Savery",
     room_details: "260",
     rso_id: "7d6ff4c0-6878-47eb-8b71-6dfdb1f6dc7c",
+      rso_name: "Climbing Club at the University of Washington",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "c14cd7e5-c534-497c-a3db-8ee7f4ff3aec",
+    image_url: "/events/movie2.png"
   },
   {
     title: "Informatics Alumni SWE Panel",
@@ -139,9 +161,11 @@ export const events = [
     location: "HUB",
     room_details: "334",
     rso_id: "8d47e2da-f1a6-428e-a894-9bb8a73f290b",
+    rso_name: "Informatics Undergraduate Association at the University of Washington",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "dc3e42d2-8f91-434f-8b76-932d2278b6cb",
+    image_url: "/events/swe.png"
   },
   {
     title: "GWC Boba Social",
@@ -151,9 +175,11 @@ export const events = [
     location: "Boba Gem",
     room_details: "",
     rso_id: "5935c906-862e-4af1-b106-a259e85690b1",
+    rso_name: "Girls Who Code - College Loops",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "df928480-5b8e-475c-8ba1-cad176c33ade",
+    image_url: "/events/boba.png"
   },
   {
     title: "Garden of Ideas x Philosophy Club Cartoon Contest",
@@ -163,9 +189,11 @@ export const events = [
     location: "Savery Hall",
     room_details: "162",
     rso_id: "006fe636-1094-4694-b5ba-2f2d9a59d2cc",
+    rso_name: "The Garden of Ideas",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "e05b85e5-9e89-42e8-8ec0-00f8550dc5e7",
+    image_url: "/events/cartoon.png"
   },
   {
     title: "Cookies and Craft Night with iQueeries",
@@ -175,9 +203,11 @@ export const events = [
     location: "SAV",
     room_details: "168",
     rso_id: "af2491e4-f8b2-4857-bd44-af26eb953ef4",
+    rso_name: "iQueeries",
     is_paid: false,
     rsvp_enabled: true,
     event_id: "f77f1d2e-d324-47d7-a8d5-853cdb037b5f",
+    image_url: "/events/cookie.png"
   },
   {
     title: "Designing Trustworthy AI: Creating AI Experiences That Users Actually Believe In - Pawan Sevak @ Adobe",
@@ -187,8 +217,10 @@ export const events = [
     location: "Online - Zoom",
     room_details: "",
     rso_id: "aff7b786-ec99-4bb1-b606-342cd7ea051b",
+    rso_name: "DubsTech",
     is_paid: false,
     rsvp_enabled: false,
     event_id: "fb744485-f6b0-4184-b2bd-7f3456fe8d3a",
+    image_url: "/events/trust.png"
   }
 ];

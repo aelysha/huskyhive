@@ -96,6 +96,9 @@ function Event(props) {
     const { title } = useParams();
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [rsvped, setRsvped] = useState(false);  
+    const [count, setCount] = useState(55);       
+
 
     useEffect(() => {
       const fetchEvent = async () => {
@@ -115,6 +118,12 @@ function Event(props) {
 
     if (loading) return <p>Loading...</p>;
     if (!event) return <p>Event not found</p>;
+
+
+    const handleRSVP = () => {
+      setRsvped(prev => !prev);
+      setCount(prev => (rsvped ? prev - 1 : prev + 1));
+    };
 
         return (
             <>
@@ -198,21 +207,47 @@ function Event(props) {
                             >
                                 {/* Date/Time */}
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <IconButton sx={{ color: theme.palette.common.black, '&:hover': { color: theme.palette.common.white, backgroundColor: theme.palette.secondary.main } }}>
+                                    <IconButton
+                                      component={Link}
+                                      to="/calendar"
+                                      sx={{ color: theme.palette.common.black, '&:hover': { color: theme.palette.common.white, backgroundColor: theme.palette.secondary.main } }}
+                                    >
                                       <CalendarMonthIcon fontSize="medium"/>
                                     </IconButton>
-                                    {/*<Typography>
-                                      {event.date}, {event.start_time} - {event.end_time}
-                                    </Typography>*/}
-                                    <Typography sx={{textDecoration: 'underline', fontSize: "1.4rem"}}>May 17th, 4:00pm - 7:00pm</Typography>
+                                    <Typography component={Link}
+                                      to="/calendar"
+                                      sx={{
+                                        textDecoration: 'underline',
+                                        fontSize: "1.4rem",
+                                        color: 'inherit',
+                                        '&:hover': { color: theme.palette.secondary.main }
+                                      }}>May 17th, 4:00pm - 7:00pm
+                                    </Typography>
                                 </Box>
-
                                 {/* Location */}
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }}>
+                                    <IconButton
+                                      component="a"
+                                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${event.location} ${event.room_details}`)}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }}
+                                    >
                                       <LocationOnIcon fontSize="medium"/>
                                     </IconButton>
-                                    <Typography sx={{textDecoration: 'underline', fontSize: "1.4rem"}}>{event.location} {event.room_details}</Typography>
+                                    <Typography
+                                      component="a"
+                                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${event.location} ${event.room_details}`)}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      sx={{
+                                        textDecoration: 'underline',
+                                        fontSize: "1.4rem",
+                                        color: 'inherit',
+                                        '&:hover': { color: theme.palette.secondary.main }
+                                      }}
+                                    >{event.location} {event.room_details}
+                                    </Typography>
                                 </Box>
 
                                 {/* Price */}
@@ -220,45 +255,56 @@ function Event(props) {
                                     <IconButton sx={{ color: 'black', '&:hover': { color: 'white', backgroundColor: '#5e4b8b' } }} onClick={() => window.open( `${event.pay_service}`, '_blank', 'noopener,noreferrer')}>
                                       <CreditCardIcon fontSize="medium"/>
                                     </IconButton>
-                                    <Typography sx={{textDecoration: 'underline', fontSize: "1.4rem"}}>Pay on Prezo (link on icon)</Typography>
+                                      <Typography
+                                        component="a"
+                                        href={event.pay_service}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        sx={{
+                                          textDecoration: 'underline',
+                                          fontSize: "1.4rem",
+                                          color: 'inherit',
+                                          '&:hover': { color: theme.palette.secondary.main }
+                                        }}
+                                      >Pay on Prezo
+                                      </Typography>
                                 </Box>
                             </Box>
                         </Box>
                     </Box>
                 </Box>
-                {/* RSVP */}
                 <ButtonGroup disableElevation fullWidth sx={{ overflow: 'hidden', width: '95%', margin: 2 }}>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            borderRadius: '62rem',
-                            paddingX: 3,
-                            backgroundColor: theme.palette.primary.main,
-                            '&:hover': {
-                            backgroundColor: theme.palette.custom.cardContainer,
-                            color: theme.palette.common.black
-                            }
-                        }}
-                        >
-                        + RSVP
-                    </Button>
+                  <Button
+                    variant="contained"
+                    onClick={handleRSVP}
+                    sx={{
+                      borderRadius: '62rem',
+                      paddingX: 3,
+                      backgroundColor: rsvped ? theme.palette.secondary.main  : theme.palette.primary.main,
+                      color: rsvped ? 'white' : 'white',
+                      '&:hover': {
+                        backgroundColor: rsvped ? theme.palette.secondary.main : theme.palette.custom.cardContainer,
+                        color: theme.palette.common.black,
+                      },
+                    }}
+                  >
+                    {rsvped ? '✓ Going' : '+ RSVP'}
+                  </Button>
 
-                    <Button
-                        disableRipple
-                        sx={{
-                            pointerEvents: 'none', // makes it non-clickable
-                            backgroundColor: 'transparent',
-                            color: 'text.primary',
-                            '&:hover': {
-                            backgroundColor: 'transparent', // disables hover effect
-                            },
-                            borderRadius: '62rem',
-                            paddingX: 3,
-                        }}
-                        >
-                        55 going
-                    </Button>
+                  <Button
+                    disableRipple
+                    sx={{
+                      pointerEvents: 'none',
+                      backgroundColor: 'transparent',
+                      color: 'text.primary',
+                      borderRadius: '62rem',
+                      paddingX: 3,
+                    }}
+                  >
+                    {count} going
+                  </Button>
                 </ButtonGroup>
+                
                 <Divider sx={{ my: 2 }} />
                 {/* RSO Hook and Description */}
                 <Box sx={{mx: 5}}>

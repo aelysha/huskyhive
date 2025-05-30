@@ -111,6 +111,8 @@ function RSO(props) {
     const [rso, setRso] = useState(null);
     const [loading, setLoading] = useState(true);
     const [joined, setJoined] = useState(false);
+  const [count, setCount] = useState(650);  // starting members count
+
 
 
     useEffect(() => {
@@ -168,7 +170,7 @@ function RSO(props) {
                     >
                       {rso.rso_name}
                     </Typography>
-                    <ButtonGroup disableElevation fullWidth sx={{ overflow: 'hidden', width: '95%' }}>
+                   <ButtonGroup disableElevation fullWidth sx={{ overflow: 'hidden', width: '95%' }}>
                       <Button
                         disableRipple
                         sx={{
@@ -184,29 +186,37 @@ function RSO(props) {
                           paddingX: 3,
                         }}
                       >
-                        <Groups2Icon/>
-                        650 Members
+                        <Groups2Icon />
+                        {count} Members
                       </Button>
 
                       <Button
-                      variant="contained"
-                      onClick={() => setJoined(true)}
-                      sx={{
-                        borderRadius: '62rem',
-                        paddingX: 3,
-                        backgroundColor: joined ? '#166B54' : '#CEE9DC',
-                        color: joined ? 'white' : '#344C42',
-                        border: '1px solid',
-                        borderColor: theme.palette.custom.outline,
-                        textTransform: 'none',
-                        '&:hover': {
-                          backgroundColor: joined ? '#145D4B' : '#BFE0D3',
-                        },
-                      }}
-                    >
-                      {joined ? '✓ Joined' : '+ Join'}
-                    </Button>
+                        variant="contained"
+                        onClick={() => {
+                            if (joined) {
+                              setCount((prevCount) => Math.max(prevCount - 1, 0));
+                            } else {
+                              setCount((prevCount) => prevCount + 1);
+                            }
+                            setJoined(!joined);
+                          }}
+                        sx={{
+                          borderRadius: '62rem',
+                          paddingX: 3,
+                          backgroundColor: joined ? '#166B54' : '#CEE9DC',
+                          color: joined ? 'white' : '#344C42',
+                          border: '1px solid',
+                          borderColor: theme.palette.custom.outline,
+                          textTransform: 'none',
+                          '&:hover': {
+                            backgroundColor: joined ? '#145D4B' : '#BFE0D3',
+                          },
+                        }}
+                      >
+                        {joined ? '✓ Joined' : '+ Join'}
+                      </Button>
                     </ButtonGroup>
+
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', width:'95%' }}>
                       <IconButton>
                         <InstagramIcon />

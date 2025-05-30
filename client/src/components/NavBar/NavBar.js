@@ -14,23 +14,23 @@ function NavBar() {
   }
 
   return (
-    <nav className="navbar">
+     <nav className="navbar">
       <div className="left-side">
         <div className="logo-container">
           <img src={logo} alt="HuskyHive Logo" className="logo" />
-          <span className="brand-name">
+          <NavLink to="/" className="brand-name" style={{ textDecoration: 'none', color: 'inherit' }}>
             <span className="husky">HUSKY</span>
             <span className="hive">HIVE</span>
-          </span>
+          </NavLink>
         </div>
         
         <div className={showLinks ? 'nav-links show' : 'nav-links'}>
           <ul>
             <li><NavLink to="/home">Home</NavLink></li>
             <li className="divider">\</li>
-            <li><NavLink to="/events">Events</NavLink></li>
-            <li className="divider">\</li>
             <li><NavLink to="/rsos">RSOs</NavLink></li>
+            <li className="divider">\</li>
+            <li><NavLink to="/events">Events</NavLink></li>  
             <li className="divider">\</li>
             <li><NavLink to="/calendar">Calendar</NavLink></li>
           </ul>

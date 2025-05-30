@@ -298,7 +298,7 @@ const filteredRSOs = sortedData.filter(rso => {
              fontSize: '1.1rem',
              color: theme.palette.text.primary
            }}
-           placeholder="Search RSOs"
+           placeholder="Search for RSOs"
            value={searchTerm}
            onChange={(e) => setSearchTerm(e.target.value)}
          />
@@ -365,6 +365,17 @@ const filteredRSOs = sortedData.filter(rso => {
          </Box>
          {/* RSO Cards */}
          <Box sx={{ flex: 1, minWidth: 0 }}>
+               <Box 
+                  sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  mb: 2,
+                }}
+                >
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontFamily: theme.palette.fontFamily }}>
+                  {filteredRSOs.length} results
+                </Typography>
+          </Box>
            <Grid container spacing={3}>
              {filteredRSOs.slice(0, 18).map((rso, index) => (
                <Grid
