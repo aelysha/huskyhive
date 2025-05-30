@@ -118,7 +118,8 @@ function RSO(props) {
     useEffect(() => {
       const fetchRso = async () => {
         try {
-          const res = await fetch(`http://localhost:5000/api/rsos/${rso_name}`);
+          const baseUrl = process.env.REACT_APP_API_BASE_URL;
+          const res = await fetch(`${baseUrl}/api/rsos/${rso_name}`);
           console.log('Raw fetch response:', res);
           const data = await res.json();
           console.log("RSO data from server:", data); 
