@@ -24,9 +24,9 @@
   }
   
   .brand-name {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;
+    font-family: 'Encode Sans Expanded', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
     margin-left: 0.5rem;
     letter-spacing: 0.5px;
   }
@@ -36,7 +36,7 @@
   }
   
   .hive {
-    color: #B7A57A; /* UW Gold */
+    color: #FFC700; 
   }
   
   .nav-links ul {

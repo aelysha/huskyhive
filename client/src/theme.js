@@ -71,6 +71,8 @@ const theme = createTheme({
       tertiaryContainer: 'rgb(255, 199, 0)',
       onTertiaryContainer: 'rgb(110, 84, 0)',
 
+      cardContainer: 'rgb(220, 205, 226)',
+
       surfaceDim: 'rgb(222, 216, 224)',
       surfaceBright: 'rgb(254, 247, 255)',
       surfaceContainerLowest: 'rgb(255, 255, 255)',

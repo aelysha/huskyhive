@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@fontsource/encode-sans": "^5.2.5",
+    "@fontsource/encode-sans-expanded": "^5.2.5",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^7.1.0",
@@ -14,6 +15,7 @@
     "@rmwc/touch-target": "^14.3.5",
     "@rmwc/typography": "^14.3.5",
     "axios": "^1.8.4",
+    "cors": "^2.8.5",
     "google-auth-library": "^9.15.1",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.87.0",
