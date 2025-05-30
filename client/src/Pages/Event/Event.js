@@ -103,7 +103,8 @@ function Event(props) {
     useEffect(() => {
       const fetchEvent = async () => {
         try {
-          const res = await fetch(`http://localhost:5000/api/events/${title}`);
+          const baseUrl = process.env.REACT_API_BASE_URL;
+          const res = await fetch(`${baseUrl}/api/events/${title}`);
           const data = await res.json();
           setEvent(data);
         } catch (err) {
